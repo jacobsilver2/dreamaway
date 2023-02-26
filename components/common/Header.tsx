@@ -24,12 +24,15 @@ const StyledUL = styled.ul`
 export const Header = () => (
   <Headroom>
     <StyledHeader>
-      <h1>
+      <p>
         <Link href="/">Dreamaway Lodge</Link>
-      </h1>
+      </p>
       <StyledUL>
         <li>
           <Link href="/calendar">Calendar</Link>
+        </li>
+        <li>
+          <Link href="/about">About</Link>
         </li>
       </StyledUL>
     </StyledHeader>

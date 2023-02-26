@@ -23,7 +23,7 @@ const Grid = styled.div`
     margin: 1rem;
     a {
       &:hover {
-        text-decoration: underline dashed;
+        text-decoration: none;
       }
     }
   }

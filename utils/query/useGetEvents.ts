@@ -1,16 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { AIRTABLE_EVENTS_URL, DEFAULT_PAGE_SIZE } from "../constant";
-
-type Event = {
-  id: string;
-  fields: {
-    Name: string;
-    Date: string;
-    Date_UTC: string;
-    Time_Formatted: string;
-  };
-};
+import { EventBean } from "../types";
 
 export const useGetEvents = () => {
   const {
@@ -22,7 +13,7 @@ export const useGetEvents = () => {
     isFetchingNextPage,
   } = useInfiniteQuery<{
     data: {
-      records: Event[];
+      records: EventBean[];
       offset?: string;
     };
   }>(

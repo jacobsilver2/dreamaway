@@ -12,3 +12,6 @@ export const getFirstEventIds = (events) => {
   });
   return firstEventsOfTheDay;
 };
+
+export const getAirtableEventUrl = (id) =>
+  `https://api.airtable.com/v0/${process.env.NEXT_PUBLIC_AIRTABLE_BASE_ID}/events/${id}?api_key=${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`;

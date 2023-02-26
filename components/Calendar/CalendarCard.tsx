@@ -2,8 +2,10 @@ import styled from "styled-components";
 import Link from "next/link";
 import { format } from "date-fns";
 import { Description, Title } from "../common/styles";
+import { EventBean } from "../../utils";
 
-const FlexContainer = styled.div`
+export const FlexContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,7 +14,7 @@ const FlexContainer = styled.div`
   margin-top: 3rem;
 `;
 
-const StyledCard = styled.div`
+export const StyledCard = styled.div`
   padding: 1.5rem;
   color: inherit;
   text-decoration: none;
@@ -41,24 +43,18 @@ const StyledLink = ({ href, name }) => (
   </Link>
 );
 
-export const EventCard = ({
-  name,
-  date,
-  time,
-}: {
-  name: string;
-  date: string;
-  time: string;
-}) => {
-  const formattedDate = format(new Date(date), "MMMM do ");
+export const CalendarCard = ({ event }: { event: EventBean }) => {
+  const formattedDate = format(new Date(event.fields.Date), "MMMM do ");
   return (
-    <FlexContainer>
-      <StyledCard>
-        <Title>
-          {formattedDate}, {time}
-        </Title>
-        <Description>{name}</Description>
-      </StyledCard>
-    </FlexContainer>
+    <Link href={`/calendar/${event.id}`}>
+      <FlexContainer>
+        <StyledCard>
+          <Title>
+            {formattedDate}, {event.fields.Time_Formatted}
+          </Title>
+          <Description>{event.fields.Name}</Description>
+        </StyledCard>
+      </FlexContainer>
+    </Link>
   );
 };

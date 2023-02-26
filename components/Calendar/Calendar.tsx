@@ -1,15 +1,13 @@
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useGetEvents } from "../../utils/query/useGetEvents";
-import { EventCard } from "./EventCard";
+import { CalendarCard } from "./CalendarCard";
 
 export const Calendar = () => {
   const { events, fetchNextPage, hasNextPage } = useGetEvents();
 
-  const renderEvents = events?.map(
-    ({ id, fields: { Name, Date_UTC, Time_Formatted } }) => (
-      <EventCard key={id} name={Name} date={Date_UTC} time={Time_Formatted} />
-    )
-  );
+  const renderEvents = events?.map((event) => (
+    <CalendarCard key={event.id} event={event} />
+  ));
   return (
     <>
       <h1>Calendar</h1>
