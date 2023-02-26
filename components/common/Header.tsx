@@ -24,13 +24,12 @@ const StyledUL = styled.ul`
 export const Header = () => (
   <Headroom>
     <StyledHeader>
-      <h1>Dreamaway Lodge</h1>
+      <h1>
+        <Link href="/">Dreamaway Lodge</Link>
+      </h1>
       <StyledUL>
         <li>
           <Link href="/calendar">Calendar</Link>
-        </li>
-        <li>
-          <Link href="/api/events">Events API</Link>
         </li>
       </StyledUL>
     </StyledHeader>
