@@ -9,12 +9,18 @@ import {
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Layout } from "../components/common/Layout";
 import { GlobalStyle } from "../components/common/styles/";
+import "yet-another-react-lightbox/styles.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const theme: DefaultTheme = {
   colors: {
-    primary: "#111",
-    secondary: "#0070f3",
-    white: "#fff",
+    black: "#111",
+    white: "#FFFCF9",
+    blue: "#26547C",
+    red: "#EF476F",
+    yellow: "#FFD166",
+    green: "#06D6A0",
+    brown: "#1b1412",
   },
 };
 

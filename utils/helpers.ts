@@ -1,15 +1,16 @@
-export const getFirstEventIds = (events) => {
+import { isSameDay } from "date-fns";
+import { EventBean } from "./types";
+
+export const getFirstEventIds = ({ events }: { events: EventBean[] }) => {
   let prevDate = "";
-  const firstEventsOfTheDay = [];
-  events.forEach((event) => {
-    // if (!moment(event.fields.Date).isSame(prevDate, "day")) {
-    //   firstEventsOfTheDay.push(event.id);
-    // }
-    if (event.fields.Date !== prevDate) {
-      firstEventsOfTheDay.push(event.id);
+  const firstEventsOfTheDay = events?.reduce((acc, event) => {
+    if (!isSameDay(new Date(event.fields.Date), new Date(prevDate))) {
+      acc.push(event.id);
     }
     prevDate = event.fields.Date;
-  });
+    return acc;
+  }, []);
+
   return firstEventsOfTheDay;
 };
 

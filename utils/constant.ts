@@ -4,3 +4,4 @@ export const DEFAULT_PAGE_SIZE = 5;
 
 export const EVENT_IMAGE_WIDTH = 500;
 export const EVENT_IMAGE_HEIGHT = 500;
+export const DREAMAWAY_EMAIL = "info@dreamawaylodge.com";

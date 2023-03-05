@@ -1,27 +1,28 @@
 import styled from "styled-components";
+import Image from "next/image";
 import Link from "next/link";
 import { format } from "date-fns";
 import { Description, Title } from "../common/styles";
 import { EventBean } from "../../utils";
 
 export const FlexContainer = styled.div`
-  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-flow: column wrap;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* flex-flow: column wrap; */
   max-width: 800px;
-  margin-top: 3rem;
+  margin: 3rem 0;
 `;
 
 export const StyledCard = styled.div`
-  padding: 1.5rem;
-  color: inherit;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 1rem;
   text-decoration: none;
   border: 1px solid black;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  width: 100%;
+  border-radius: 8px;
+  transition: color 0.25s ease, border-color 0.15s ease;
 
   &:hover,
   :focus,
@@ -43,18 +44,36 @@ const StyledLink = ({ href, name }) => (
   </Link>
 );
 
-export const CalendarCard = ({ event }: { event: EventBean }) => {
+export const CalendarCard = ({
+  event,
+  isFirstEventOfDay,
+}: {
+  event: EventBean;
+  isFirstEventOfDay: boolean;
+}) => {
   const formattedDate = format(new Date(event.fields.Date), "MMMM do ");
   return (
-    <Link href={`/calendar/${event.id}`}>
-      <FlexContainer>
-        <StyledCard>
-          <Title>
-            {formattedDate}, {event.fields.Time_Formatted}
-          </Title>
-          <Description>{event.fields.Name}</Description>
-        </StyledCard>
-      </FlexContainer>
-    </Link>
+    <>
+      {isFirstEventOfDay && <Title>{formattedDate}</Title>}
+      <Link href={`/calendar/${event.id}`}>
+        <FlexContainer>
+          <StyledCard>
+            <Image
+              src={event.fields.act_image[0].thumbnails.large.url}
+              alt={event.fields.Name}
+              width={300}
+              height={300}
+              style={{ borderRadius: "8px 0 0 8px" }}
+            />
+            <div>
+              <Description>
+                <b>{event.fields.Time_Formatted}</b>
+              </Description>
+              <Description>{event.fields.Name}</Description>
+            </div>
+          </StyledCard>
+        </FlexContainer>
+      </Link>
+    </>
   );
 };

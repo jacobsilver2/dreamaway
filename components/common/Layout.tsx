@@ -5,7 +5,8 @@ import { Header } from "./Header";
 import { Container } from "./styles";
 
 const Grid = styled.div`
-  height: 100vh;
+  background-color: ${({ theme }) => theme.colors.black};
+  min-height: 100vh;
   display: grid;
   margin: auto;
   grid-template-columns: 1fr;
@@ -21,11 +22,6 @@ const Grid = styled.div`
     grid-area: main;
     justify-self: center;
     margin: 1rem;
-    a {
-      &:hover {
-        text-decoration: none;
-      }
-    }
   }
   footer {
     grid-area: footer;

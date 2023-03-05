@@ -16,21 +16,11 @@ export const Title = styled.h1`
   font-size: 4rem;
   text-align: center;
   text-decoration: none;
-
-  a {
-    color: ${({ theme }) => theme.colors.secondary};
-    text-decoration: none;
-    &:hover,
-    :focus,
-    :active {
-      text-decoration: underline;
-    }
-  }
 `;
 
 export const Description = styled.p`
   text-align: center;
-  line-height: 1.5;
+  /* line-height: 1.5; */
   font-size: 1.5rem;
 `;
 export const CodeTag = styled.code`
