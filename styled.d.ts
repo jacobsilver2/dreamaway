@@ -2,6 +2,10 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
+    sizes: {
+      maxWidth: string;
+      maxWidthCentered: string;
+    };
     colors: {
       black: string;
       white: string;

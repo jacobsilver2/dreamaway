@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.main`
   padding: 0 0.5rem;
   display: flex;
   flex-flow: column nowrap;

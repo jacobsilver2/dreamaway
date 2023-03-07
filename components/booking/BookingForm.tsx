@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { usePostBookingSubmission } from "../../utils/query/usePostBookingSubmission";
+import { useRouter } from "next/router";
 
 const StyledFormContainer = styled.div`
   display: flex;
@@ -8,17 +10,19 @@ const StyledFormContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: #000;
-  color: #fff;
+  background-color: ${({ theme }) => theme.colors.blue};
+  color: ${({ theme }) => theme.colors.white};
   padding: 2rem;
   margin: 0 auto;
-  min-width: 400px;
-  max-width: 800px;
+  min-width: ${({ theme }) => theme.sizes.maxWidthCentered};
+  max-width: ${({ theme }) => theme.sizes.maxWidthCentered};
   border-radius: 10px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 
   label {
     margin: 1rem 0;
+    font-size: 1rem;
+    align-self: flex-start;
   }
   input {
     width: 100%;
@@ -26,6 +30,21 @@ const StyledFormContainer = styled.div`
     border-radius: 5px;
     border: none;
     margin: 0.5rem 0;
+    &:focus {
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+      outline: ${({ theme }) => theme.colors.yellow} auto 5px;
+    }
+  }
+  select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+    margin: 0.5rem 0;
+    &:focus {
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+      outline: ${({ theme }) => theme.colors.yellow} auto 5px;
+    }
   }
   textarea {
     width: 100%;
@@ -33,16 +52,32 @@ const StyledFormContainer = styled.div`
     border-radius: 5px;
     border: none;
     margin: 0.5rem 0;
+    &:focus {
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+      outline: ${({ theme }) => theme.colors.yellow} auto 5px;
+    }
   }
   input[type="submit"] {
-    background-color: #fff;
-    color: #000;
+    background-color: ${({ theme }) => theme.colors.yellow};
+    color: ${({ theme }) => theme.colors.black};
+    font-size: 2rem;
+    font-weight: 500;
+    width: 100%;
+    height: 5rem;
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     margin: 1rem 0;
     cursor: pointer;
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.red};
+    }
   }
+`;
+
+const StyledRequired = styled.span`
+  color: ${({ theme }) => theme.colors.red};
+  font-size: 0.75rem;
 `;
 
 type Inputs = {
@@ -50,7 +85,7 @@ type Inputs = {
   lastName: string;
   email: string;
   actName: string;
-  numberOfBandMembers: string;
+  numberOfBandMembers: "1" | "2" | "3" | "4" | "5 or more";
   website1: string;
   website2: string;
   website3: string;
@@ -58,15 +93,62 @@ type Inputs = {
 };
 
 export const BookingForm = () => {
+  const { push } = useRouter();
   const {
-    watch,
     register,
     handleSubmit,
+    clearErrors,
+    resetField,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
-  console.log(watch("numberOfBandMembers"));
+  const clearForm = () => {
+    clearErrors();
+    resetField("firstName");
+    resetField("lastName");
+    resetField("email");
+    resetField("actName");
+    resetField("numberOfBandMembers");
+    resetField("website1");
+    resetField("website2");
+    resetField("website3");
+    resetField("message");
+  };
+
+  const { mutate: submitBookingRequest } = usePostBookingSubmission();
+  const onSubmit: SubmitHandler<Inputs> = ({
+    actName,
+    email,
+    firstName,
+    lastName,
+    message,
+    numberOfBandMembers,
+    website1,
+    website2,
+    website3,
+  }) =>
+    submitBookingRequest(
+      {
+        firstName,
+        lastName,
+        email,
+        act_name: actName,
+        number_of_band_members: numberOfBandMembers,
+        website_1: website1,
+        website_2: website2,
+        website_3: website3,
+        message,
+      },
+      {
+        onSuccess: () => {
+          clearForm();
+          push("/thankyou");
+        },
+        onError: () => {
+          console.log("error");
+        },
+      }
+    );
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -86,24 +168,32 @@ export const BookingForm = () => {
         <label htmlFor="email">Email</label>
         <input
           id="email"
+          placeholder="Email"
           {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
         />
-        {errors.email && <span>This field is required</span>}
+        {errors.email && (
+          <StyledRequired>This field is required</StyledRequired>
+        )}
         <label htmlFor="actName">Act Name</label>
         <input
           placeholder="Act Name"
           id="actName"
           {...register("actName", { required: true })}
         />
-        {errors.actName && <span>This field is required</span>}
+        {errors.actName && (
+          <StyledRequired>This field is required</StyledRequired>
+        )}
         <label htmlFor="numberOfBandMembers">Number of Band Members</label>
-        <input
+        <select
           id="numberOfBandMembers"
-          type="number"
-          {...register("numberOfBandMembers", {
-            required: true,
-          })}
-        />
+          {...register("numberOfBandMembers", { required: true })}
+        >
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5 or more</option>
+        </select>
         {errors.numberOfBandMembers && <span>This field is required</span>}
         <label htmlFor="website1">Website 1</label>
         <input
@@ -125,7 +215,8 @@ export const BookingForm = () => {
         />
         <label htmlFor="message">Message</label>
         <textarea
-          placeholder="message"
+          rows={10}
+          placeholder="Message"
           id="website4"
           {...register("message")}
         />

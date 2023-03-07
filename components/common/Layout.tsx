@@ -2,26 +2,27 @@ import Head from "next/head";
 import styled from "styled-components";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
-import { Container } from "./styles";
 
 const Grid = styled.div`
   background-color: ${({ theme }) => theme.colors.black};
   min-height: 100vh;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   margin: auto;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
-  grid-template-areas:
-    "header"
-    "main"
-    "footer";
   header {
     grid-area: header;
   }
   main {
-    grid-area: main;
+    width: 100%;
+    height: 100%;
+    flex: auto;
     justify-self: center;
-    margin: 1rem;
+    align-self: center;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
   footer {
     grid-area: footer;
@@ -41,9 +42,7 @@ export const Layout = ({ children }: LayoutProps) => (
     </Head>
     <Grid>
       <Header />
-      <main>
-        <Container>{children}</Container>
-      </main>
+      <main>{children}</main>
       <Footer />
     </Grid>
   </>

@@ -45,3 +45,15 @@ export type EventBean = {
     status: Airtable_Event_Status;
   };
 };
+
+export type BookingSubmissionInputBean = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  act_name: string;
+  number_of_band_members: "1" | "2" | "3" | "4" | "5 or more";
+  website_1: string;
+  website_2: string;
+  website_3: string;
+  message: string;
+};

@@ -13,6 +13,10 @@ import "yet-another-react-lightbox/styles.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const theme: DefaultTheme = {
+  sizes: {
+    maxWidth: "1200px",
+    maxWidthCentered: "768px",
+  },
   colors: {
     black: "#111",
     white: "#FFFCF9",
