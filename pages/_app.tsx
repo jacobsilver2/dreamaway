@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactElement, ReactNode, useState } from "react";
 import type { AppProps } from "next/app";
 import { ThemeProvider, DefaultTheme } from "styled-components";
 import {
@@ -6,11 +6,13 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { ParallaxProvider } from "react-scroll-parallax";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Layout } from "../components/common/Layout";
+import { Layout } from "../components/common/layouts/Layout";
 import { GlobalStyle } from "../components/common/styles/";
 import "yet-another-react-lightbox/styles.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { NextPage } from "next";
 
 const theme: DefaultTheme = {
   sizes: {
@@ -25,22 +27,32 @@ const theme: DefaultTheme = {
     yellow: "#FFD166",
     green: "#06D6A0",
     brown: "#1b1412",
+    grey: "#E0E0E0",
   },
 };
 
-export default function App({ Component, pageProps }: AppProps) {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const [queryClient] = useState(() => new QueryClient());
+  const getLayout = Component.getLayout || ((page) => page);
   return (
     <>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
         <ThemeProvider theme={theme}>
           <GlobalStyle />
-          <Layout>
-            <Hydrate state={pageProps.dehydratedState}>
-              <Component {...pageProps} />
-            </Hydrate>
-          </Layout>
+          <Hydrate state={pageProps.dehydratedState}>
+            <ParallaxProvider>
+              {getLayout(<Component {...pageProps} />)}
+            </ParallaxProvider>
+          </Hydrate>
         </ThemeProvider>
       </QueryClientProvider>
     </>

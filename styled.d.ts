@@ -14,6 +14,7 @@ declare module "styled-components" {
       yellow: string;
       green: string;
       brown: string;
+      grey: string;
     };
   }
 }

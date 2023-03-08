@@ -1,7 +1,8 @@
+import { ParallaxBanner } from "react-scroll-parallax";
 import styled from "styled-components";
 
 export const Container = styled.main`
-  padding: 0 0.5rem;
+  padding: 5rem;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -20,7 +21,6 @@ export const Title = styled.h1`
 
 export const Description = styled.p`
   text-align: center;
-  /* line-height: 1.5; */
   font-size: 1.5rem;
 `;
 export const CodeTag = styled.code`
@@ -31,4 +31,23 @@ export const CodeTag = styled.code`
   font-size: 1.1rem;
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;
+`;
+
+export const ParallaxBannerHeader = styled(ParallaxBanner)`
+  height: 30vh;
+  position: relative;
+  aspect-ratio: 16 / 9; ;
+`;
+
+export const ParallaxTextContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+`;
+
+export const ParallaxText = styled.div`
+  color: ${({ theme }) => theme.colors.white};
+  z-index: 1;
 `;

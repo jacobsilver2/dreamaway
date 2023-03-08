@@ -1,7 +1,13 @@
+import { EventsLayout } from "../components/common/layouts";
 import { Events as EventsComponent } from "../components/events/";
+import { NextPageWithLayout } from "./_app";
 
-const events = () => {
+const Events: NextPageWithLayout = () => {
   return <EventsComponent />;
 };
 
-export default events;
+Events.getLayout = (page) => {
+  return <EventsLayout>{page}</EventsLayout>;
+};
+
+export default Events;

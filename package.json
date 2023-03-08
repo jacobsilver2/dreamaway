@@ -20,6 +20,7 @@
     "react-hook-form": "^7.43.2",
     "react-infinite-scroll-component": "^6.1.0",
     "react-responsive-carousel": "^3.2.23",
+    "react-scroll-parallax": "^3.3.2",
     "react-spinners": "^0.13.8",
     "styled-components": "^5.3.5",
     "yet-another-react-lightbox": "^2.5.0"

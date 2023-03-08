@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export type IsFuture = "future" | null;
 
 export type Airtable_Thumbnail = {
@@ -56,4 +58,8 @@ export type BookingSubmissionInputBean = {
   website_2: string;
   website_3: string;
   message: string;
+};
+
+export type LayoutProps = {
+  children: React.ReactNode;
 };

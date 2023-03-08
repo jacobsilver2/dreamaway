@@ -3,9 +3,7 @@ import Image from "next/image";
 import Hamburger from "hamburger-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Headroom from "react-headroom";
 import styled from "styled-components";
-import Logo from "../../public/logo.png";
 import { MOBILE_BREAKPOINT } from "../../utils";
 import { Portal } from "./Portal";
 import { Title } from "./styles";
@@ -16,12 +14,13 @@ const StyledHeaderLink = styled(Link)<{ active?: boolean }>`
 `;
 
 const StyledHeader = styled.header`
-  position: relative;
+  z-index: 1;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 6rem;
-  background-color: ${({ theme }) => theme.colors.black};
+  background-color: transparent;
   color: ${({ theme }) => theme.colors.white};
   padding: 1rem;
 `;
@@ -102,7 +101,7 @@ const renderHeaderLinks = ({
   pathname: string;
 }) =>
   Object.keys(links).map((key) => (
-    <StyledDesktopLI>
+    <StyledDesktopLI key={key}>
       <StyledHeaderLink
         active={pathname.includes(links[key])}
         href={links[key]}
@@ -122,7 +121,7 @@ const renderOverlayLinks = ({
   setOpen: (isOpen: boolean) => void;
 }) =>
   Object.keys(links).map((key) => (
-    <StyledMobileLI>
+    <StyledMobileLI key={key}>
       <Title>
         <StyledHeaderLink
           onClick={() => setOpen(false)}
@@ -135,41 +134,23 @@ const renderOverlayLinks = ({
     </StyledMobileLI>
   ));
 
-export const MobileOverlay = styled.div<{ isOpen: boolean }>`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: ${({ theme }) => theme.colors.yellow};
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 5rem;
-  opacity: ${({ isOpen }) => (isOpen ? 0.98 : 0)};
-  visibility: ${({ isOpen }) => (isOpen ? "visible" : "hidden")};
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-  overflow: hidden;
-`;
-
 export const Header = () => {
   const [isOpen, setOpen] = useState(false);
   const { pathname } = useRouter();
 
   return (
-    <Headroom>
+    <>
       <StyledHeader>
+        <Link href="/">
+          <p>Dreamaway Lodge</p>
+        </Link>
+
         <StyledHeaderLinks>
           <StyledUL>
-            {renderHeaderLinks({ links: headerLinksLeft, pathname })}
-          </StyledUL>
-          <Link href="/">
-            <Image src={Logo} alt="DreamawayLogo" width={70} />
-          </Link>
-          <StyledUL>
-            {renderHeaderLinks({ links: headerLinksRight, pathname })}
+            {renderHeaderLinks({
+              links: { ...headerLinksLeft, ...headerLinksRight },
+              pathname,
+            })}
           </StyledUL>
         </StyledHeaderLinks>
       </StyledHeader>
@@ -185,6 +166,6 @@ export const Header = () => {
           })}
         </StyledMobileUL>
       </Portal>
-    </Headroom>
+    </>
   );
 };

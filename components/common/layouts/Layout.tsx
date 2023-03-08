@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styled from "styled-components";
-import { Footer } from "./Footer";
-import { Header } from "./Header";
+import { LayoutProps } from "../../../utils/types";
+import { Footer } from "../Footer";
 
 const Grid = styled.div`
   background-color: ${({ theme }) => theme.colors.black};
@@ -9,16 +9,12 @@ const Grid = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
-  header {
-    grid-area: header;
-  }
   main {
     width: 100%;
     height: 100%;
     flex: auto;
     justify-self: center;
     align-self: center;
-    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,10 +25,6 @@ const Grid = styled.div`
   }
 `;
 
-type LayoutProps = {
-  children: React.ReactNode;
-};
-
 export const Layout = ({ children }: LayoutProps) => (
   <>
     <Head>
@@ -41,7 +33,6 @@ export const Layout = ({ children }: LayoutProps) => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Grid>
-      <Header />
       <main>{children}</main>
       <Footer />
     </Grid>
