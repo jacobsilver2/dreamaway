@@ -8,3 +8,4 @@ export * from "./DirectionsLayout";
 export * from "./CalendarLayout";
 export * from "./EventsLayout";
 export * from "./ThankYouLayout";
+export * from "./CalendarEventLayout";

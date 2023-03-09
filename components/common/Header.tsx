@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import Hamburger from "hamburger-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -19,7 +18,8 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 6rem;
+  /* height: 100%; */
+  /* height: 6rem; */
   background-color: transparent;
   color: ${({ theme }) => theme.colors.white};
   padding: 1rem;

@@ -34,7 +34,7 @@ export const CodeTag = styled.code`
 `;
 
 export const ParallaxBannerHeader = styled(ParallaxBanner)`
-  height: 30vh;
+  height: 50vh;
   position: relative;
   aspect-ratio: 16 / 9; ;
 `;

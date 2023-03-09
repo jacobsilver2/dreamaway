@@ -10,18 +10,20 @@ import {
 } from "./styles";
 
 type ParallaxHeaderProps = {
-  image: StaticImageData;
+  image: StaticImageData | string;
   altText: string;
   title: string;
+  fill?: boolean;
 };
 export const ParallaxHeader = ({
   image,
   title,
   altText,
+  fill,
 }: ParallaxHeaderProps) => (
   <ParallaxBannerHeader>
     <ParallaxBannerLayer speed={-60}>
-      <Image src={image} alt={altText} />
+      <Image src={image} alt={altText} fill={fill} />
     </ParallaxBannerLayer>
 
     <ParallaxBannerLayer

@@ -11,6 +11,7 @@ export const CalendarLayout = ({ children }: LayoutProps) => {
         image={HouseFront}
         altText="House Front"
         title="Live Music"
+        fill
       />
       <Container>{children}</Container>
     </Layout>

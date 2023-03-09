@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { AIRTABLE_EVENTS_URL, DEFAULT_PAGE_SIZE } from "../constant";
 import { EventBean } from "../types";
@@ -39,5 +39,39 @@ export const useGetEvents = () => {
     hasNextPage,
     isFetching,
     isFetchingNextPage,
+  };
+};
+
+export const useGetTodayEvents = () => {
+  const { data, isLoading, error } = useQuery<{
+    data: { records: EventBean[] };
+  }>(["todayEvents"], () => axios.get(`${AIRTABLE_EVENTS_URL}&view=Today`));
+
+  return {
+    todayEvents: data?.data.records,
+    isLoading,
+    error,
+  };
+};
+
+export const useGetEventsOfRange = ({
+  before,
+  after,
+}: {
+  before: string;
+  after: string;
+}) => {
+  const { data, isLoading, error } = useQuery<{
+    data: { records: EventBean[] };
+  }>(["eventsOfRange", `${after}-${before}`], () =>
+    axios.get(
+      `${AIRTABLE_EVENTS_URL}&filterByFormula=AND(IS_AFTER(%7BDate%7D%2C+'${after}')%2CIS_BEFORE(%7BDate%7D%2C+'${before}'))&view=Future`
+    )
+  );
+
+  return {
+    eventsOfRange: data?.data.records,
+    isLoading,
+    error,
   };
 };
