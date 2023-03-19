@@ -4,7 +4,7 @@ import { LayoutProps } from "../../../utils/types";
 import { Footer } from "../Footer";
 
 const Grid = styled.div`
-  background-color: ${({ theme }) => theme.colors.black};
+  background-color: ${({ theme }) => theme.colors.white};
   min-height: 100vh;
   display: flex;
   flex-direction: column;

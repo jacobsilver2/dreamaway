@@ -14,11 +14,10 @@ export const Carousel = ({ images }: { images: CarouselImage[] }) => (
     infiniteLoop={true}
     interval={4000}
     showIndicators={false}
-    // width={"50%"}
     dynamicHeight={true}
   >
-    {images.map((image) => (
-      <div>
+    {images.map((image, i) => (
+      <div key={i}>
         <Image src={image.src} alt={image.alt} />
       </div>
     ))}

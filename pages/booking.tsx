@@ -1,4 +1,4 @@
-import { BookingForm } from "../components/booking";
+import { BookingForm } from "../components/contact";
 import { BookingLayout } from "../components/common/layouts";
 import { NextPageWithLayout } from "./_app";
 const Booking: NextPageWithLayout = () => <BookingForm />;

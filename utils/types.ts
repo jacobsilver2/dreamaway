@@ -43,9 +43,19 @@ export type EventBean = {
     act_id: string[];
     act_image: Airtable_Image[];
     act_url: string[];
+    act_firstName: string;
+    act_lastName: string;
     id: string;
     status: Airtable_Event_Status;
   };
+};
+
+export type ActInput = {
+  Name?: string;
+  First_Name?: string;
+  Last_Name?: string;
+  Blurb?: string;
+  Url?: string;
 };
 
 export type BookingSubmissionInputBean = {
@@ -57,6 +67,13 @@ export type BookingSubmissionInputBean = {
   website_1: string;
   website_2: string;
   website_3: string;
+  message: string;
+};
+
+export type GeneralSubmissionInputBean = {
+  firstName: string;
+  lastName: string;
+  email: string;
   message: string;
 };
 

@@ -8,7 +8,7 @@ export const EventsLayout = ({ children }: LayoutProps) => {
   return (
     <Layout>
       <ParallaxHeader image={HouseFront} altText="House Front" title="Events" />
-      <Container>{children}</Container>
+      <Container maxWidth>{children}</Container>
     </Layout>
   );
 };

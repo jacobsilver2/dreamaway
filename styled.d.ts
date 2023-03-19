@@ -4,7 +4,7 @@ declare module "styled-components" {
   export interface DefaultTheme {
     sizes: {
       maxWidth: string;
-      maxWidthCentered: string;
+      mobileBreakpoint: string;
     };
     colors: {
       black: string;
@@ -15,6 +15,8 @@ declare module "styled-components" {
       green: string;
       brown: string;
       grey: string;
+      lightGrey: string;
+      darkGrey: string;
     };
   }
 }

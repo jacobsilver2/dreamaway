@@ -12,7 +12,7 @@ export const DirectionsLayout = ({ children }: LayoutProps) => {
         altText="House Front"
         title="Directions"
       />
-      <Container>{children}</Container>
+      <Container maxWidth>{children}</Container>
     </Layout>
   );
 };

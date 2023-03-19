@@ -12,7 +12,7 @@ export const ContactLayout = ({ children }: LayoutProps) => {
         altText="House Front"
         title="Contact"
       />
-      <Container>{children}</Container>
+      <Container maxWidth>{children}</Container>
     </Layout>
   );
 };

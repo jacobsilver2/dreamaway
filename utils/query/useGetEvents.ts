@@ -65,12 +65,26 @@ export const useGetEventsOfRange = ({
     data: { records: EventBean[] };
   }>(["eventsOfRange", `${after}-${before}`], () =>
     axios.get(
-      `${AIRTABLE_EVENTS_URL}&filterByFormula=AND(IS_AFTER(%7BDate%7D%2C+'${after}')%2CIS_BEFORE(%7BDate%7D%2C+'${before}'))&view=Future`
+      `${AIRTABLE_EVENTS_URL}&filterByFormula=AND(IS_AFTER(%7BDate%7D%2C+'${after}')%2CIS_BEFORE(%7BDate%7D%2C+'${before}'))`
     )
   );
 
   return {
     eventsOfRange: data?.data.records,
+    isLoading,
+    error,
+  };
+};
+
+export const useGetNextEvent = () => {
+  const { data, isLoading, error } = useQuery<{
+    data: { records: EventBean[] };
+  }>(["nextEvent"], () =>
+    axios.get(`${AIRTABLE_EVENTS_URL}&view=Future&pageSize=1`)
+  );
+
+  return {
+    nextEvent: data?.data.records[0],
     isLoading,
     error,
   };

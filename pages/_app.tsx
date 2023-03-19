@@ -17,7 +17,7 @@ import { NextPage } from "next";
 const theme: DefaultTheme = {
   sizes: {
     maxWidth: "1200px",
-    maxWidthCentered: "768px",
+    mobileBreakpoint: "768px",
   },
   colors: {
     black: "#111",
@@ -27,7 +27,9 @@ const theme: DefaultTheme = {
     yellow: "#FFD166",
     green: "#06D6A0",
     brown: "#1b1412",
-    grey: "#E0E0E0",
+    grey: "#bcc5ce",
+    lightGrey: "#f7f7f7",
+    darkGrey: "#333",
   },
 };
 

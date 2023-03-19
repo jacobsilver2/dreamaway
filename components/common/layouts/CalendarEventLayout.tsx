@@ -17,6 +17,8 @@ export const CalendarEventLayout = ({
         image={event.fields?.act_image[0].url}
         altText={event?.fields?.Name}
         title={event?.fields?.Name}
+        date={event?.fields?.Date}
+        time={event?.fields?.Time_Formatted}
         fill
       />
       <Container>{children}</Container>

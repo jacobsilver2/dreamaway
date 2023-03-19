@@ -1,29 +1,42 @@
-import Image from "next/image";
 import { StaticImageData } from "next/image";
 import { ParallaxBannerLayer } from "react-scroll-parallax";
+import styled from "styled-components";
+import { getFullDate } from "../../utils";
 import { Header } from "./Header";
 import {
+  Description,
   ParallaxBannerHeader,
   ParallaxText,
   ParallaxTextContainer,
+  StyledFullwidthImage,
   Title,
 } from "./styles";
+
+const StyledDescription = styled(Description)`
+  font-size: 1.5rem;
+`;
 
 type ParallaxHeaderProps = {
   image: StaticImageData | string;
   altText: string;
   title: string;
+  subText?: string;
+  date?: string;
+  time?: string;
   fill?: boolean;
 };
 export const ParallaxHeader = ({
   image,
   title,
   altText,
-  fill,
+  date,
+  time,
+  subText,
+  fill = true,
 }: ParallaxHeaderProps) => (
   <ParallaxBannerHeader>
     <ParallaxBannerLayer speed={-60}>
-      <Image src={image} alt={altText} fill={fill} />
+      <StyledFullwidthImage src={image} alt={altText} fill={fill} />
     </ParallaxBannerLayer>
 
     <ParallaxBannerLayer
@@ -37,6 +50,9 @@ export const ParallaxHeader = ({
     <ParallaxTextContainer>
       <ParallaxText>
         <Title>{title}</Title>
+        {subText && <StyledDescription>{subText}</StyledDescription>}
+        {date && <StyledDescription>{getFullDate(date)}</StyledDescription>}
+        {time && <StyledDescription>{time}</StyledDescription>}
       </ParallaxText>
     </ParallaxTextContainer>
   </ParallaxBannerHeader>

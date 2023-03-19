@@ -18,8 +18,6 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* height: 100%; */
-  /* height: 6rem; */
   background-color: transparent;
   color: ${({ theme }) => theme.colors.white};
   padding: 1rem;
@@ -77,19 +75,28 @@ const StyledMobileUL = styled.ul`
   }
 `;
 
+const StyledLogo = styled.div`
+  display: none;
+  @media (min-width: ${MOBILE_BREAKPOINT}px) {
+    display: block;
+  }
+`;
+
 type HeaderLinks = {
   [key: string]: string;
 };
 
 const headerLinksLeft: HeaderLinks = {
-  calendar: "/calendar",
-  dining: "/dining",
-  bar: "/bar",
+  music: "/music",
+  menu: "/menu",
+  faq: "/faq",
+  history: "/history",
 };
 
 const headerLinksRight: HeaderLinks = {
+  events: "/events",
+  gallery: "/gallery",
   directions: "/directions",
-  ["weddings/events"]: "/events",
   contact: "/contact",
 };
 
@@ -106,7 +113,7 @@ const renderHeaderLinks = ({
         active={pathname.includes(links[key])}
         href={links[key]}
       >
-        {key}
+        <h4>{key}</h4>
       </StyledHeaderLink>
     </StyledDesktopLI>
   ));
@@ -141,10 +148,11 @@ export const Header = () => {
   return (
     <>
       <StyledHeader>
-        <Link href="/">
-          <p>Dreamaway Lodge</p>
-        </Link>
-
+        <StyledLogo>
+          <Link href="/">
+            <h3>Dreamaway Lodge</h3>
+          </Link>
+        </StyledLogo>
         <StyledHeaderLinks>
           <StyledUL>
             {renderHeaderLinks({
@@ -155,7 +163,7 @@ export const Header = () => {
         </StyledHeaderLinks>
       </StyledHeader>
       <StyledHamburgerWrapper>
-        <Hamburger toggled={isOpen} toggle={setOpen} />
+        <Hamburger color="white" toggled={isOpen} toggle={setOpen} />
       </StyledHamburgerWrapper>
       <Portal isOpen={isOpen} setOpen={setOpen}>
         <StyledMobileUL>
