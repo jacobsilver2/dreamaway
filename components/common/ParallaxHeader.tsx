@@ -4,17 +4,12 @@ import styled from "styled-components";
 import { getFullDate } from "../../utils";
 import { Header } from "./Header";
 import {
-  Description,
   ParallaxBannerHeader,
   ParallaxText,
   ParallaxTextContainer,
   StyledFullwidthImage,
   Title,
 } from "./styles";
-
-const StyledDescription = styled(Description)`
-  font-size: 1.5rem;
-`;
 
 type ParallaxHeaderProps = {
   image: StaticImageData | string;
@@ -50,9 +45,9 @@ export const ParallaxHeader = ({
     <ParallaxTextContainer>
       <ParallaxText>
         <Title>{title}</Title>
-        {subText && <StyledDescription>{subText}</StyledDescription>}
-        {date && <StyledDescription>{getFullDate(date)}</StyledDescription>}
-        {time && <StyledDescription>{time}</StyledDescription>}
+        {subText && <h3>{subText}</h3>}
+        {date && <h3>{getFullDate(date)}</h3>}
+        {time && <h3>{time}</h3>}
       </ParallaxText>
     </ParallaxTextContainer>
   </ParallaxBannerHeader>

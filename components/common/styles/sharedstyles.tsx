@@ -27,21 +27,6 @@ export const Title = styled.h1`
   }
 `;
 
-export const Description = styled.p<{ grey?: boolean }>`
-  text-align: center;
-  font-size: 0.9rem;
-  ${({ grey, theme }) => grey && `color: ${theme.colors.grey};`}
-`;
-export const CodeTag = styled.code`
-  background: #fafafa;
-  border-radius: 5px;
-  margin: 0 0.75rem;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-`;
-
 export const StyledFullwidthImage = styled(Image)`
   object-fit: cover;
   object-position: center;
@@ -149,4 +134,48 @@ export const StyledFormContainer = styled.div`
 export const StyledRequired = styled.span`
   color: ${({ theme }) => theme.colors.red};
   font-size: 0.75rem;
+`;
+
+export const FoodContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem;
+  h2 {
+    margin: 0;
+  }
+  p {
+    margin: 0;
+  }
+`;
+
+export const FoodCategory = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 3rem 0;
+`;
+
+export const FoodGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  width: 100%;
+`;
+
+export const FoodItem = styled.div`
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: 100%;
+  h3 {
+    margin: 0;
+  }
+  p {
+    margin: 0;
+  }
+  padding: 1rem;
 `;

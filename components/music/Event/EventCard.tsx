@@ -9,7 +9,6 @@ import {
   EVENT_IMAGE_WIDTH,
   getFullDate,
 } from "../../../utils";
-import { Description } from "../../common/styles";
 
 const StyledImageContainer = styled.div`
   justify-self: center;
@@ -87,7 +86,7 @@ export const EventCard = ({
         </StyledImageContainer>
       )}
       <h3>{event?.fields.Name}</h3>
-      <Description>
+      <h3>
         <StyledUL>
           <li>
             <b>
@@ -101,9 +100,9 @@ export const EventCard = ({
             </b>
           </li>
         </StyledUL>
-      </Description>
-      <Description>{event?.fields.act_blurb}</Description>
-      {displaySubDate && <Description grey>{fullDate}</Description>}
+      </h3>
+      <p>{event?.fields.act_blurb}</p>
+      {displaySubDate && <h4>{fullDate}</h4>}
     </>
   );
 };

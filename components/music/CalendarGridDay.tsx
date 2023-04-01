@@ -133,17 +133,17 @@ export const CalendarGridDay = ({
   const renderEvents = () => {
     if (hasEvents) {
       return (
-        <Link href={`/music/${day?.events[0].id}`}>
-          <StyledImage
-            placeholder="blur"
-            blurDataURL="
+        // <Link href={`/music/${day?.events[0].id}`}>
+        <StyledImage
+          placeholder="blur"
+          blurDataURL="
             data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mPs+A8AAhUBiUo2eoUAAAAASUVORK5CYII=
             "
-            src={day?.events[0].fields.act_image[0].url}
-            alt={day?.events[0].fields.act_image[0].filename}
-            fill
-          />
-        </Link>
+          src={day?.events[0].fields.act_image[0].url}
+          alt={day?.events[0].fields.act_image[0].filename}
+          fill
+        />
+        // </Link>
       );
     }
     return null;

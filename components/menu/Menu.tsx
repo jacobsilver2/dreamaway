@@ -5,6 +5,11 @@ import {
   StyledTabsRoot,
   StyledTabsTrigger,
 } from "../common/styles";
+import { Dinner } from "./Dinner";
+import { Wine } from "./Wine";
+import { Beer } from "./Beer";
+import { Cocktails } from "./Cocktails";
+import { SpiritFree } from "./SpiritFree";
 
 export const StyledTabsList = styled.div`
   display: flex;
@@ -33,17 +38,15 @@ export const Menu = () => {
   const renderTabContent = () => {
     switch (tab) {
       case TAB.DINNER:
-        return <div>{TAB.DINNER}</div>;
+        return <Dinner />;
       case TAB.WINE:
-        return <div>{TAB.WINE}</div>;
+        return <Wine />;
       case TAB.BEER:
-        return <div>{TAB.BEER}</div>;
+        return <Beer />;
       case TAB.COCKTAILS:
-        return <div>{TAB.COCKTAILS}</div>;
+        return <Cocktails />;
       case TAB.SPIRIT_FREE:
-        return <div>{TAB.SPIRIT_FREE}</div>;
-      case TAB.DINNER:
-        return <div>{TAB.DINNER}</div>;
+        return <SpiritFree />;
     }
   };
 
@@ -52,7 +55,7 @@ export const Menu = () => {
       return (
         <StyledTabsTrigger
           key={tab}
-          active={tab === TAB[tab]}
+          active={TAB[tab] === tab}
           onClick={() => setTab(TAB[tab])}
         >
           {TAB[tab]}

@@ -16,6 +16,7 @@ import { useGetEventsOfRange } from "../../utils/query";
 import { CalendarGridDay } from "./CalendarGridDay";
 import { DayLabels } from "./DayLabels";
 import { Toolbar } from "./Toolbar";
+import Link from "next/link";
 
 const Container = styled.div`
   width: 60%;
@@ -81,14 +82,29 @@ export const CalendarGrid = () => {
       <Toolbar cursor={cursor} setCursor={setCursor} />
       <DayLabels />
       <Month>
-        {days.map((day, i) => (
-          <CalendarGridDay
-            loading={isLoading}
-            cursor={cursor}
-            day={day}
-            key={i}
-          />
-        ))}
+        {days.map((day, i) => {
+          const hasEvents = day?.events?.length > 0 && !isLoading;
+          if (hasEvents) {
+            return (
+              <Link key={i} href={`/music/${day.events[0].id}`}>
+                <CalendarGridDay
+                  loading={isLoading}
+                  cursor={cursor}
+                  day={day}
+                  key={i}
+                />
+              </Link>
+            );
+          }
+          return (
+            <CalendarGridDay
+              loading={isLoading}
+              cursor={cursor}
+              day={day}
+              key={i}
+            />
+          );
+        })}
       </Month>
     </Container>
   );

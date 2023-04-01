@@ -77,6 +77,86 @@ export type GeneralSubmissionInputBean = {
   message: string;
 };
 
+export type FoodTypeBean = "appetizer" | "main" | "dessert";
+export type FoodBean = {
+  id: string;
+  createdTime: string;
+  fields: {
+    name: string;
+    description: string;
+    type: FoodTypeBean;
+    price: string;
+    vegan: boolean;
+    gluten_free: boolean;
+    vegan_option: boolean;
+  };
+};
+
+export type WineTypeBean = "red" | "white" | "rose" | "orange";
+export type WineBean = {
+  id: string;
+  createdTime: string;
+  fields: {
+    name: string;
+    description: string;
+    type: WineTypeBean;
+    year: string;
+    glass_price: string;
+    bottle_price: string;
+  };
+};
+
+export type BeerTypeBean =
+  | "pilsner"
+  | "ipa"
+  | "pale_ale"
+  | "stout"
+  | "non-alcoholic";
+
+export type BeerPourBean = "draft" | "bottle" | "can";
+
+export type BeerBean = {
+  id: string;
+  createdTime: string;
+  fields: {
+    company: string;
+    name: string;
+    type: BeerTypeBean;
+    pour: BeerPourBean;
+    price: string;
+    location: string;
+    alcohol: number;
+  };
+};
+
+export type CocktailTypeBean =
+  | "seasonal"
+  | "shaken"
+  | "built"
+  | "margarita"
+  | "stirred";
+
+export type CocktailBean = {
+  id: string;
+  createdTime: string;
+  fields: {
+    name: string;
+    description: string;
+    type: CocktailTypeBean;
+    price: string;
+  };
+};
+
+export type SpiritFreeBean = {
+  id: string;
+  createdTime: string;
+  fields: {
+    name: string;
+    description: string;
+    price: string;
+  };
+};
+
 export type LayoutProps = {
   children: React.ReactNode;
 };
