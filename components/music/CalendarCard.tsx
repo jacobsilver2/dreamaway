@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import { format } from "date-fns";
-import { Description, Title } from "../common/styles";
+import { Title } from "../common/styles";
 import { EventBean } from "../../utils";
 
 export const FlexContainer = styled.div`
@@ -52,7 +52,7 @@ export const CalendarCard = ({
               style={{ borderRadius: "8px 0 0 8px" }}
             />
             <div>
-              <Description>{event.fields.Name}</Description>
+              <h3>{event.fields.Name}</h3>
             </div>
           </StyledCard>
         </FlexContainer>
