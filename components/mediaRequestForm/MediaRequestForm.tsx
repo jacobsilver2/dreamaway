@@ -29,8 +29,8 @@ export const MediaRequestForm = () => {
     query: { eventId, actId },
   } = useRouter();
 
-  // const { event, error, isLoading } = useGetEvent({ id: eventId as string });
-  const { event, error, isLoading } = useGetEvent({ id: "recLIkJYui8tNcRz8" });
+  const { event, error, isLoading } = useGetEvent({ id: eventId as string });
+  // const { event, error, isLoading } = useGetEvent({ id: "recLIkJYui8tNcRz8" });
   const { mutate: updateEvent } = useUpdateEvent();
   const { mutate: updateAct } = useUpdateAct();
 
@@ -50,16 +50,14 @@ export const MediaRequestForm = () => {
   }) => {
     updateEvent(
       {
-        // id: eventId as string,
-        id: "recLIkJYui8tNcRz8",
+        id: eventId as string,
         name: actName,
       },
       {
         onSuccess: () => {
           updateAct(
             {
-              // id: actId as string,
-              id: "recObK4aDF4pC4mPu",
+              id: actId as string,
               data: {
                 Name: actName,
                 First_Name: firstName,
