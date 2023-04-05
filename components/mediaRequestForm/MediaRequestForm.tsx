@@ -41,7 +41,7 @@ export const MediaRequestForm = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = ({
+  const onSubmit: SubmitHandler<Inputs> = async ({
     firstName,
     lastName,
     actName,
@@ -70,8 +70,14 @@ export const MediaRequestForm = () => {
               onSuccess: () => {
                 push("/thankyou");
               },
+              onError: (error) => {
+                console.log("act update error", error);
+              },
             }
           );
+        },
+        onError: (error) => {
+          console.log("event update error", error);
         },
       }
     );
@@ -93,57 +99,63 @@ export const MediaRequestForm = () => {
   }, [event, reset]);
 
   return (
-    <Container>
-      <h1>Media Request Form</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <StyledFormContainer>
-          <label htmlFor="date">Date Of Show</label>
-          <input id="date" {...register("date")} disabled />
-          <label htmlFor="time">Time Of Show</label>
-          <input id="time" {...register("time")} disabled />
-          <label htmlFor="firstName">First Name</label>
-          <input
-            placeholder="First Name"
-            id="firstName"
-            {...register("firstName")}
-          />
-          <label htmlFor="lastName">Last Name</label>
-          <input
-            placeholder="Last Name"
-            id="lastName"
-            {...register("lastName")}
-          />
-          <label htmlFor="email">Email</label>
-          <input
-            disabled
-            id="email"
-            placeholder="Email"
-            {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
-          />
-          {errors.email && (
-            <StyledRequired>This field is required</StyledRequired>
-          )}
-          <label htmlFor="actName">Act Name</label>
-          <input
-            placeholder="Act Name"
-            id="actName"
-            {...register("actName", { required: true })}
-          />
-          {errors.actName && (
-            <StyledRequired>This field is required</StyledRequired>
-          )}
-          <label htmlFor="website">Website 1</label>
-          <input placeholder="Website" id="website" {...register("website")} />
-          <label htmlFor="blurb">Message</label>
-          <textarea
-            rows={10}
-            placeholder="Blurb"
-            id="blurb"
-            {...register("blurb")}
-          />
-          <input type="submit" />
-        </StyledFormContainer>
-      </form>
-    </Container>
+    <>
+      <Container>
+        <h1>Media Request Form</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <StyledFormContainer>
+            <label htmlFor="date">Date Of Show</label>
+            <input id="date" {...register("date")} disabled />
+            <label htmlFor="time">Time Of Show</label>
+            <input id="time" {...register("time")} disabled />
+            <label htmlFor="firstName">First Name</label>
+            <input
+              placeholder="First Name"
+              id="firstName"
+              {...register("firstName")}
+            />
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              placeholder="Last Name"
+              id="lastName"
+              {...register("lastName")}
+            />
+            <label htmlFor="email">Email</label>
+            <input
+              disabled
+              id="email"
+              placeholder="Email"
+              {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+            />
+            {errors.email && (
+              <StyledRequired>This field is required</StyledRequired>
+            )}
+            <label htmlFor="actName">Act Name</label>
+            <input
+              placeholder="Act Name"
+              id="actName"
+              {...register("actName", { required: true })}
+            />
+            {errors.actName && (
+              <StyledRequired>This field is required</StyledRequired>
+            )}
+            <label htmlFor="website">Website 1</label>
+            <input
+              placeholder="Website"
+              id="website"
+              {...register("website")}
+            />
+            <label htmlFor="blurb">Message</label>
+            <textarea
+              rows={10}
+              placeholder="Blurb"
+              id="blurb"
+              {...register("blurb")}
+            />
+            <input type="submit" />
+          </StyledFormContainer>
+        </form>
+      </Container>
+    </>
   );
 };

@@ -6,7 +6,8 @@ import { EventBean } from "../types";
 export const useGetEvent = ({ id }: { id: string }) => {
   const { data, error, isLoading } = useQuery<{ data: EventBean }>(
     ["event", id],
-    () => axios.get(getAirtableEventUrl(id))
+    () => axios.get(getAirtableEventUrl(id)),
+    { enabled: Boolean(id) }
   );
 
   const event = data?.data;

@@ -1,5 +1,5 @@
 import { History as HistoryComponent } from "../components/history";
-import { GalleryLayout } from "../components/common/layouts";
+import { HistoryLayout } from "../components/common/layouts";
 import { NextPageWithLayout } from "./_app";
 
 const History: NextPageWithLayout = () => {
@@ -7,7 +7,7 @@ const History: NextPageWithLayout = () => {
 };
 
 History.getLayout = (page) => {
-  return <GalleryLayout>{page}</GalleryLayout>;
+  return <HistoryLayout>{page}</HistoryLayout>;
 };
 
 export default History;

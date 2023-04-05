@@ -6,10 +6,8 @@ import {
   StyledFullwidthImage,
   Title,
 } from "../common/styles";
-import HouseFront from "../../public/home/house_front.jpg";
-import HouseSide from "../../public/home/house_side.jpg";
-import Restaurant from "../../public/home/restaurant.jpg";
-import Sign from "../../public/home/sign.jpeg";
+import HomeImage from "../../public/home/Black_Hat.jpg";
+import GuitarImage from "../../public/menus/Guitar.jpg";
 import { Header } from "../common";
 import Link from "next/link";
 
@@ -19,75 +17,113 @@ const StyledParallaxBanner = styled(ParallaxBanner)`
   position: relative;
 `;
 
-export const Home = () => {
-  return (
-    <>
-      <StyledParallaxBanner>
-        <ParallaxBannerLayer speed={-50}>
-          <StyledFullwidthImage src={HouseFront} alt="House Front" fill />
-        </ParallaxBannerLayer>
+const StyledTextContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+`;
 
-        <ParallaxBannerLayer
-          translateY={[0, 75]}
-          shouldAlwaysCompleteAnimation
-          expanded={false}
-        >
-          <Header />
-        </ParallaxBannerLayer>
+const StyledButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
+const StyledHomeLink = styled.div`
+  font-size: 2rem;
+  border: 1px solid white;
+  padding: 1rem;
+  border-radius: 300px;
+  &:hover {
+    background: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.black};
+  }
+`;
+
+export const Home = () => (
+  <>
+    <StyledParallaxBanner>
+      <ParallaxBannerLayer speed={-50}>
+        <StyledFullwidthImage src={HomeImage} alt="House Front" fill />
+      </ParallaxBannerLayer>
+
+      <ParallaxBannerLayer
+        translateY={[0, 75]}
+        shouldAlwaysCompleteAnimation
+        expanded={false}
+      >
+        <Header />
+      </ParallaxBannerLayer>
+
+      <ParallaxTextContainer>
+        <ParallaxText>
+          <Title>
+            The
+            <br /> Dream Away
+            <br /> Lodge
+          </Title>
+        </ParallaxText>
+      </ParallaxTextContainer>
+    </StyledParallaxBanner>
+
+    <StyledParallaxBanner>
+      <ParallaxBannerLayer speed={-50}>
+        <StyledFullwidthImage src={GuitarImage} alt="Restaurant" fill />
+      </ParallaxBannerLayer>
+      <ParallaxBannerLayer speed={-10}>
         <ParallaxTextContainer>
           <ParallaxText>
-            <Link href="/">
-              <Title>dreamaway lodge</Title>
+            <StyledTextContainer>
+              <h4>
+                “Food is music to the body, music is food to the heart” -
+                Gregory David Roberts
+              </h4>
+              <StyledButtonWrapper>
+                <Link href="/menu">
+                  <StyledHomeLink>MENUS</StyledHomeLink>
+                </Link>
+              </StyledButtonWrapper>
+            </StyledTextContainer>
+          </ParallaxText>
+        </ParallaxTextContainer>
+      </ParallaxBannerLayer>
+    </StyledParallaxBanner>
+
+    <StyledParallaxBanner>
+      <ParallaxBannerLayer speed={-50}>
+        <StyledFullwidthImage src={GuitarImage} alt="House Side" fill />
+      </ParallaxBannerLayer>
+      <ParallaxBannerLayer speed={-10}>
+        <ParallaxTextContainer>
+          <ParallaxText>
+            <StyledTextContainer>
+              <h2>Live Music</h2>
+              <StyledButtonWrapper>
+                <Link href="/music">
+                  <StyledHomeLink>Calendar</StyledHomeLink>
+                </Link>
+              </StyledButtonWrapper>
+            </StyledTextContainer>
+          </ParallaxText>
+        </ParallaxTextContainer>
+      </ParallaxBannerLayer>
+    </StyledParallaxBanner>
+
+    {/* <StyledParallaxBanner>
+      <ParallaxBannerLayer speed={-50}>
+        <StyledFullwidthImage src={Sign} alt="Sign" fill />
+      </ParallaxBannerLayer>
+      <ParallaxBannerLayer speed={-10}>
+        <ParallaxTextContainer>
+          <ParallaxText>
+            <Link href="/events">
+              <Title>events</Title>
             </Link>
           </ParallaxText>
         </ParallaxTextContainer>
-      </StyledParallaxBanner>
-
-      <StyledParallaxBanner>
-        <ParallaxBannerLayer speed={-50}>
-          <StyledFullwidthImage src={HouseSide} alt="House Side" fill />
-        </ParallaxBannerLayer>
-        <ParallaxBannerLayer speed={-10}>
-          <ParallaxTextContainer>
-            <ParallaxText>
-              <Link href="/music">
-                <Title>music</Title>
-              </Link>
-            </ParallaxText>
-          </ParallaxTextContainer>
-        </ParallaxBannerLayer>
-      </StyledParallaxBanner>
-
-      <StyledParallaxBanner>
-        <ParallaxBannerLayer speed={-50}>
-          <StyledFullwidthImage src={Restaurant} alt="Restaurant" fill />
-        </ParallaxBannerLayer>
-        <ParallaxBannerLayer speed={-10}>
-          <ParallaxTextContainer>
-            <ParallaxText>
-              <Link href="/menu">
-                <Title>menu</Title>
-              </Link>
-            </ParallaxText>
-          </ParallaxTextContainer>
-        </ParallaxBannerLayer>
-      </StyledParallaxBanner>
-
-      <StyledParallaxBanner>
-        <ParallaxBannerLayer speed={-50}>
-          <StyledFullwidthImage src={Sign} alt="Sign" fill />
-        </ParallaxBannerLayer>
-        <ParallaxBannerLayer speed={-10}>
-          <ParallaxTextContainer>
-            <ParallaxText>
-              <Link href="/events">
-                <Title>events</Title>
-              </Link>
-            </ParallaxText>
-          </ParallaxTextContainer>
-        </ParallaxBannerLayer>
-      </StyledParallaxBanner>
-    </>
-  );
-};
+      </ParallaxBannerLayer>
+    </StyledParallaxBanner> */}
+  </>
+);

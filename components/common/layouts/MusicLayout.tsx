@@ -1,6 +1,6 @@
 import { LayoutProps } from "../../../utils";
 import { Layout } from "./Layout";
-import HouseFront from "../../../public/home/house_front.jpg";
+import PianoFrameImage from "../../../public/music/Dylan_Piano.jpg";
 import { ParallaxHeader } from "../ParallaxHeader";
 import { Container } from "../styles";
 
@@ -8,8 +8,8 @@ export const MusicLayout = ({ children }: LayoutProps) => {
   return (
     <Layout>
       <ParallaxHeader
-        image={HouseFront}
-        altText="House Front"
+        image={PianoFrameImage}
+        altText="Dylan Piano Frame"
         title="Live Music"
         fill
       />

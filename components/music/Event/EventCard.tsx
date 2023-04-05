@@ -89,14 +89,15 @@ export const EventCard = ({
       <h3>
         <StyledUL>
           <li>
-            <b>
-              ***TWO SETS: 9PM & 10:15PM*** ***$10 (CASH) SUGGESTED DONATION***
-            </b>
+            <b>***TWO SETS: 8/8:30PM & 9:30/10PM***</b>
+          </li>
+          <li>
+            <b>***$10 (CASH) SUGGESTED DONATION***</b>
           </li>
           <li>
             <b>
-              ***LUNATICO HAS A FULL DINNER AND COCKTAIL MENU SO COME EARLY TO
-              EAT!***
+              ***THE DREAM AWAY LODGE HAS A FULL DINNER AND COCKTAIL MENU SO
+              COME EARLY TO EAT!***
             </b>
           </li>
         </StyledUL>

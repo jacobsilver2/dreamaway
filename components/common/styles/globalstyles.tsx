@@ -15,8 +15,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.white};
     padding: 0;
     margin: 0;
-    /* font-family: Didot, 'Bodoni MT', 'Noto Serif Display', 'URW Palladio L', P052, Sylfaen, serif; */
-    font-family: 'EB Garamond', serif;
+    font-family: 'Trebuchet MS', serif;
   }
   h1 {
     font-size: 2rem;

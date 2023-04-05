@@ -10,4 +10,3 @@ export * from "./EventsLayout";
 export * from "./ThankYouLayout";
 export * from "./CalendarEventLayout";
 export * from "./HistoryLayout";
-export * from "./GalleryLayout";

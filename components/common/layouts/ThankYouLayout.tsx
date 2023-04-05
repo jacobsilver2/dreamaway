@@ -1,6 +1,6 @@
 import { LayoutProps } from "../../../utils";
 import { Layout } from "./Layout";
-import HouseFront from "../../../public/home/house_front.jpg";
+import GreenGlassImage from "../../../public/home/Green_Glass.jpg";
 import { ParallaxHeader } from "../ParallaxHeader";
 import { Container } from "../styles";
 
@@ -8,8 +8,8 @@ export const ThankYouLayout = ({ children }: LayoutProps) => {
   return (
     <Layout>
       <ParallaxHeader
-        image={HouseFront}
-        altText="House Front"
+        image={GreenGlassImage}
+        altText="Green Glass Image"
         title="Thank You"
       />
       <Container>{children}</Container>

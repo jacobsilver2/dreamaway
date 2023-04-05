@@ -88,15 +88,10 @@ type HeaderLinks = {
 
 const headerLinksLeft: HeaderLinks = {
   music: "/music",
-  menu: "/menu",
+  menus: "/menu",
+  events: "/events",
   faq: "/faq",
   history: "/history",
-};
-
-const headerLinksRight: HeaderLinks = {
-  events: "/events",
-  gallery: "/gallery",
-  directions: "/directions",
   contact: "/contact",
 };
 
@@ -156,7 +151,7 @@ export const Header = () => {
         <StyledHeaderLinks>
           <StyledUL>
             {renderHeaderLinks({
-              links: { ...headerLinksLeft, ...headerLinksRight },
+              links: { ...headerLinksLeft },
               pathname,
             })}
           </StyledUL>
@@ -168,7 +163,7 @@ export const Header = () => {
       <Portal isOpen={isOpen} setOpen={setOpen}>
         <StyledMobileUL>
           {renderOverlayLinks({
-            links: { ...headerLinksLeft, ...headerLinksRight },
+            links: { ...headerLinksLeft },
             pathname,
             setOpen,
           })}
