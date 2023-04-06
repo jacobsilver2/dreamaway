@@ -12,11 +12,10 @@ export const StyledTabsRoot = styled.div`
 export const StyledTabsList = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  height: 2rem;
   width: 100%;
-  gap: 6rem;
+  row-gap: 1rem;
 `;
 
 export const StyledTabsTrigger = styled.div<{ active: boolean }>`

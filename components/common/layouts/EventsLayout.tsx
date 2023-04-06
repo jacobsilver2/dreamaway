@@ -1,6 +1,6 @@
 import { LayoutProps } from "../../../utils";
 import { Layout } from "./Layout";
-import CandelabraImage from "../../../public/events/Candelabra.jpg";
+import CandelabraImage from "../../../public/events/candelabra_compressed.jpeg";
 import { ParallaxHeader } from "../ParallaxHeader";
 import { Container } from "../styles";
 
@@ -9,7 +9,7 @@ export const EventsLayout = ({ children }: LayoutProps) => {
     <Layout>
       <ParallaxHeader
         image={CandelabraImage}
-        altText="House Front"
+        altText="Candelabra"
         title="Events"
       />
       <Container maxWidth>{children}</Container>

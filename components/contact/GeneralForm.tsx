@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import { usePostGeneralSubmission } from "../../utils/mutation";
@@ -29,7 +28,8 @@ export const GeneralForm = () => {
     resetField("message");
   };
 
-  const { mutate: submitBookingRequest } = usePostGeneralSubmission();
+  const { mutate: submitBookingRequest, isLoading } =
+    usePostGeneralSubmission();
   const onSubmit: SubmitHandler<Inputs> = ({
     email,
     firstName,
@@ -63,13 +63,15 @@ export const GeneralForm = () => {
           id="firstName"
           {...register("firstName")}
         />
+
         <label htmlFor="lastName">Last Name</label>
         <input
           placeholder="Last Name"
           id="lastName"
           {...register("lastName")}
         />
-        <label htmlFor="email">Email</label>
+
+        <label htmlFor="email">Email*</label>
         <input
           id="email"
           placeholder="Email"
@@ -78,6 +80,7 @@ export const GeneralForm = () => {
         {errors.email && (
           <StyledRequired>This field is required</StyledRequired>
         )}
+
         <label htmlFor="message">Message</label>
         <textarea
           style={{ resize: "none" }}
@@ -86,7 +89,8 @@ export const GeneralForm = () => {
           id="website4"
           {...register("message")}
         />
-        <input type="submit" />
+
+        <input type="submit" value={isLoading ? "Submitting..." : "Submit"} />
       </StyledFormContainer>
     </form>
   );

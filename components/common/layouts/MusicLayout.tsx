@@ -1,6 +1,6 @@
 import { LayoutProps } from "../../../utils";
 import { Layout } from "./Layout";
-import PianoFrameImage from "../../../public/music/Dylan_Piano.jpg";
+import PianoFrameImage from "../../../public/music/dylan_piano_compressed.jpeg";
 import { ParallaxHeader } from "../ParallaxHeader";
 import { Container } from "../styles";
 

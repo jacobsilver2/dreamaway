@@ -1,6 +1,6 @@
 import { LayoutProps } from "../../../utils";
 import { Layout } from "./Layout";
-import BlackHatImage from "../../../public/home/Black_Hat.jpg";
+import RoosterImage from "../../../public/contact/rooster_compressed.jpeg";
 import { ParallaxHeader } from "../ParallaxHeader";
 import { Container } from "../styles";
 
@@ -8,9 +8,9 @@ export const ContactLayout = ({ children }: LayoutProps) => {
   return (
     <Layout>
       <ParallaxHeader
-        image={BlackHatImage}
-        altText="House Front"
-        title="Contact"
+        image={RoosterImage}
+        altText="Rooster"
+        title="The Dream Away Lodge"
       />
       <Container maxWidth>{children}</Container>
     </Layout>

@@ -1,6 +1,6 @@
 import { LayoutProps } from "../../../utils";
 import { Layout } from "./Layout";
-import SignImage from "../../../public/faq/Sign.jpg";
+import SignImage from "../../../public/faq/sign_compressed.jpeg";
 import { ParallaxHeader } from "../ParallaxHeader";
 import { Container } from "../styles";
 

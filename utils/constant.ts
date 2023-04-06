@@ -2,6 +2,8 @@ export const AIRTABLE_EVENTS_URL = `https://api.airtable.com/v0/appv71wlAEbwJVhk
 export const AIRTABLE_EVENT_URL = `https://api.airtable.com/v0/appv71wlAEbwJVhkN/events/`;
 export const AIRTABLE_ACT_URL = `https://api.airtable.com/v0/appv71wlAEbwJVhkN/acts/`;
 export const AIRTABLE_BOOKING_SUBMISSION_URL = `https://api.airtable.com/v0/appv71wlAEbwJVhkN/general_submissions?api_key=${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`;
+export const AIRTABLE_SHOOTS_SUBMISSION_URL = `https://api.airtable.com/v0/appv71wlAEbwJVhkN/shoots_submissions?api_key=${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`;
+export const AIRTABLE_EVENT_SUBMISSION_URL = `https://api.airtable.com/v0/appv71wlAEbwJVhkN/event_submissions?api_key=${process.env.NEXT_PUBLIC_AIRTABLE_API_KEY}`;
 export const AIRTABLE_RESTAURANT_FOOD_URL = `https://api.airtable.com/v0/appd9muHwaAGmSw0H/Food/`;
 export const AIRTABLE_RESTAURANT_WINE_URL = `https://api.airtable.com/v0/appd9muHwaAGmSw0H/Wine/`;
 export const AIRTABLE_RESTAURANT_BEER_URL = `https://api.airtable.com/v0/appd9muHwaAGmSw0H/Beer/`;

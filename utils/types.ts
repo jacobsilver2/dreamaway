@@ -77,6 +77,36 @@ export type GeneralSubmissionInputBean = {
   message: string;
 };
 
+export type ShootsSubmissionBean = {
+  name: string;
+  phone: string;
+  email: string;
+  crew: string;
+  type: string;
+  date: string;
+  hours: string;
+  start_time: string;
+  production_name: string;
+  production_company: string;
+  location: string;
+  vehicles: string;
+  additional_info: string;
+};
+
+export type EventSubmissionBean = {
+  name: string;
+  email: string;
+  phone: string;
+  people: string;
+  date: string;
+  time: string;
+  hours: string;
+  location: "inside" | "outside" | "inside and outside";
+  bar: "open" | "beerAndWine" | "full" | "deluxe";
+  occasion: "string";
+  additional_info: "string";
+};
+
 export type FoodTypeBean = "appetizer" | "main" | "dessert";
 export type FoodBean = {
   id: string;

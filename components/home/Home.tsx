@@ -6,8 +6,8 @@ import {
   StyledFullwidthImage,
   Title,
 } from "../common/styles";
-import HomeImage from "../../public/home/Black_Hat.jpg";
-import GuitarImage from "../../public/menus/Guitar.jpg";
+import HomeImage from "../../public/home/black_hat_compressed.jpeg";
+import GuitarImage from "../../public/menus/guitar_compressed.jpeg";
 import { Header } from "../common";
 import Link from "next/link";
 

@@ -7,10 +7,14 @@ import {
 } from "../common/styles";
 import { BookingForm } from "./BookingForm";
 import { GeneralForm } from "./GeneralForm";
+import { EventForm } from "./EventForm";
+import { ShootForm } from "./ShootForm";
 
 enum TAB {
-  MUSIC = "Music",
+  EVENT = "Book a Party/Event",
+  SHOOT = "Shoots",
   GENERAL = "General",
+  MUSIC = "Music",
 }
 
 export const Contact = () => {
@@ -18,6 +22,18 @@ export const Contact = () => {
   return (
     <StyledTabsRoot>
       <StyledTabsList>
+        <StyledTabsTrigger
+          onClick={() => setTab(TAB.EVENT)}
+          active={tab === TAB.EVENT}
+        >
+          {TAB.EVENT}
+        </StyledTabsTrigger>
+        <StyledTabsTrigger
+          onClick={() => setTab(TAB.SHOOT)}
+          active={tab === TAB.SHOOT}
+        >
+          {TAB.SHOOT}
+        </StyledTabsTrigger>
         <StyledTabsTrigger
           onClick={() => setTab(TAB.MUSIC)}
           active={tab === TAB.MUSIC}
@@ -39,6 +55,16 @@ export const Contact = () => {
       {tab === TAB.GENERAL && (
         <StyledTabsContent>
           <GeneralForm />
+        </StyledTabsContent>
+      )}
+      {tab === TAB.EVENT && (
+        <StyledTabsContent>
+          <EventForm />
+        </StyledTabsContent>
+      )}
+      {tab === TAB.SHOOT && (
+        <StyledTabsContent>
+          <ShootForm />
         </StyledTabsContent>
       )}
     </StyledTabsRoot>

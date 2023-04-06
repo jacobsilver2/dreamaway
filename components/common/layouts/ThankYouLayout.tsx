@@ -1,6 +1,6 @@
 import { LayoutProps } from "../../../utils";
 import { Layout } from "./Layout";
-import GreenGlassImage from "../../../public/home/Green_Glass.jpg";
+import GreenGlassImage from "../../../public/home/green_glass_compressed.jpeg";
 import { ParallaxHeader } from "../ParallaxHeader";
 import { Container } from "../styles";
 

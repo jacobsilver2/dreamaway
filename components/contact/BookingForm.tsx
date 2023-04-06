@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { usePostBookingSubmission } from "../../utils/mutation";
 import { useRouter } from "next/router";
@@ -39,7 +38,8 @@ export const BookingForm = () => {
     resetField("message");
   };
 
-  const { mutate: submitBookingRequest } = usePostBookingSubmission();
+  const { mutate: submitBookingRequest, isLoading } =
+    usePostBookingSubmission();
   const onSubmit: SubmitHandler<Inputs> = ({
     actName,
     email,
@@ -83,13 +83,15 @@ export const BookingForm = () => {
           id="firstName"
           {...register("firstName")}
         />
+
         <label htmlFor="lastName">Last Name</label>
         <input
           placeholder="Last Name"
           id="lastName"
           {...register("lastName")}
         />
-        <label htmlFor="email">Email</label>
+
+        <label htmlFor="email">Email*</label>
         <input
           id="email"
           placeholder="Email"
@@ -98,7 +100,8 @@ export const BookingForm = () => {
         {errors.email && (
           <StyledRequired>This field is required</StyledRequired>
         )}
-        <label htmlFor="actName">Act Name</label>
+
+        <label htmlFor="actName">Act Name*</label>
         <input
           placeholder="Act Name"
           id="actName"
@@ -107,7 +110,8 @@ export const BookingForm = () => {
         {errors.actName && (
           <StyledRequired>This field is required</StyledRequired>
         )}
-        <label htmlFor="numberOfBandMembers">Number of Band Members</label>
+
+        <label htmlFor="numberOfBandMembers">Number of Band Members*</label>
         <select
           id="numberOfBandMembers"
           {...register("numberOfBandMembers", { required: true })}
@@ -119,24 +123,28 @@ export const BookingForm = () => {
           <option>5 or more</option>
         </select>
         {errors.numberOfBandMembers && <span>This field is required</span>}
+
         <label htmlFor="website1">Website 1</label>
         <input
           placeholder="Website 1"
           id="website1"
           {...register("website1")}
         />
+
         <label htmlFor="website2">Website 2</label>
         <input
           placeholder="Website 2"
           id="website2"
           {...register("website2")}
         />
+
         <label htmlFor="website3">Website 3</label>
         <input
           placeholder="Website 3"
           id="website3"
           {...register("website3")}
         />
+
         <label htmlFor="message">Message</label>
         <textarea
           style={{ resize: "none" }}
@@ -145,7 +153,8 @@ export const BookingForm = () => {
           id="message"
           {...register("message")}
         />
-        <input type="submit" />
+
+        <input type="submit" value={isLoading ? "Submitting..." : "Submit"} />
       </StyledFormContainer>
     </form>
   );

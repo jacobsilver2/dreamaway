@@ -1,6 +1,6 @@
 import { LayoutProps } from "../../../utils";
 import { Layout } from "./Layout";
-import RedPaintingLayout from "../../../public/home/Red_Painting_Details.jpg";
+import RedPaintingLayout from "../../../public/home/red_painting_details_compressed.jpeg";
 import { ParallaxHeader } from "../ParallaxHeader";
 import { Container } from "../styles";
 

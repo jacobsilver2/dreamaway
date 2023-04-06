@@ -1,6 +1,6 @@
 import { LayoutProps } from "../../../utils";
 import { Layout } from "./Layout";
-import DylanMamaFrameImage from "../../../public/history/Dylan_Mama_Frame.jpg";
+import DylanMamaFrameImage from "../../../public/history/dylan_mama_frame_compressed.jpeg";
 import { ParallaxHeader } from "../ParallaxHeader";
 import { Container } from "../styles";
 
