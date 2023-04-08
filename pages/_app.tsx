@@ -8,7 +8,6 @@ import {
 } from "@tanstack/react-query";
 import { ParallaxProvider } from "react-scroll-parallax";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Layout } from "../components/common/layouts/Layout";
 import { GlobalStyle } from "../components/common/styles/";
 import "yet-another-react-lightbox/styles.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";

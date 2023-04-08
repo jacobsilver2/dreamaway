@@ -30,7 +30,7 @@ export const StyledTabsTrigger = styled.div<{ active: boolean }>`
   font-size: 1.5rem;
   cursor: pointer;
   &:hover {
-    color: ${({ theme }) => theme.colors.yellow};
+    color: ${({ theme }) => theme.colors.blue};
   }
 
   &:focus {
@@ -43,7 +43,7 @@ export const StyledTabsTrigger = styled.div<{ active: boolean }>`
     css`
       border: none;
       box-shadow: none;
-      color: ${({ theme }) => theme.colors.yellow};
+      color: ${({ theme }) => theme.colors.blue};
     `}
 `;
 

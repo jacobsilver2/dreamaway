@@ -113,6 +113,13 @@ const renderHeaderLinks = ({
     </StyledDesktopLI>
   ));
 
+const getIsActive = (pathname: string, link: string) => {
+  if (link === "/") {
+    return pathname === "/";
+  }
+  return pathname.includes(link);
+};
+
 const renderOverlayLinks = ({
   links,
   pathname,
@@ -127,7 +134,8 @@ const renderOverlayLinks = ({
       <Title>
         <StyledHeaderLink
           onClick={() => setOpen(false)}
-          active={pathname.includes(links[key])}
+          // active={pathname.includes(links[key])}
+          active={getIsActive(pathname, links[key])}
           href={links[key]}
         >
           {key}
@@ -163,7 +171,7 @@ export const Header = () => {
       <Portal isOpen={isOpen} setOpen={setOpen}>
         <StyledMobileUL>
           {renderOverlayLinks({
-            links: { ...headerLinksLeft },
+            links: { ...{ home: "/" }, ...headerLinksLeft },
             pathname,
             setOpen,
           })}

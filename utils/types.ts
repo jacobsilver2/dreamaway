@@ -35,6 +35,7 @@ export type EventBean = {
     Date_UTC: string;
     Is_Future: IsFuture;
     Name: string;
+    featured?: boolean;
     Status_Updated_Time: string;
     Time_Formatted: string;
     Time_Military: string;

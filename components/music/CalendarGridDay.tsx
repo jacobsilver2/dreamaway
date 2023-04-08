@@ -130,20 +130,27 @@ export const CalendarGridDay = ({
   const dayIsToday = isToday(day?.date);
   const hasEvents = !loading && day?.events?.length > 0;
 
+  const getFeaturedEvent = () => {
+    if (day?.events?.length === 1) {
+      return day?.events[0];
+    }
+
+    const hasFeatured = day?.events?.find((event) => event.fields.featured);
+    return hasFeatured || day?.events[0];
+  };
+
   const renderEvents = () => {
     if (hasEvents) {
       return (
-        // <Link href={`/music/${day?.events[0].id}`}>
         <StyledImage
           placeholder="blur"
           blurDataURL="
             data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mPs+A8AAhUBiUo2eoUAAAAASUVORK5CYII=
             "
-          src={day?.events[0].fields.act_image[0].url}
-          alt={day?.events[0].fields.act_image[0].filename}
+          src={getFeaturedEvent()?.fields.act_image[0].url}
+          alt={getFeaturedEvent()?.fields.act_image[0].filename}
           fill
         />
-        // </Link>
       );
     }
     return null;

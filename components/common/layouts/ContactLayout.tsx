@@ -12,7 +12,7 @@ export const ContactLayout = ({ children }: LayoutProps) => {
         altText="Rooster"
         title="The Dream Away Lodge"
       />
-      <Container maxWidth>{children}</Container>
+      <Container>{children}</Container>
     </Layout>
   );
 };

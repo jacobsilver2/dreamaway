@@ -28,8 +28,9 @@ export const Title = styled.h1`
 `;
 
 export const StyledFullwidthImage = styled(Image)`
+  /* width: 100%;
+  height: 100%; */
   object-fit: cover;
-  object-position: center;
 `;
 
 export const ParallaxBannerHeader = styled(ParallaxBanner)`
@@ -68,12 +69,12 @@ export const StyledFormContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: ${({ theme }) => theme.colors.blue};
+  background-color: ${({ theme }) => theme.colors.darkGrey};
   color: ${({ theme }) => theme.colors.white};
   padding: 2rem;
   margin: 0 auto;
-  border-radius: 10px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+  /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5); */
 
   label {
     margin: 1rem 0;
@@ -83,38 +84,38 @@ export const StyledFormContainer = styled.div`
   input {
     width: 100%;
     padding: 0.5rem;
-    border-radius: 5px;
+    border-radius: 2px;
     border: none;
     margin: 0.5rem 0;
     &:focus {
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-      outline: ${({ theme }) => theme.colors.yellow} auto 5px;
+      outline: ${({ theme }) => theme.colors.blue} auto 5px;
     }
   }
   select {
     width: 100%;
     padding: 0.5rem;
-    border-radius: 5px;
+    border-radius: 2px;
     border: none;
     margin: 0.5rem 0;
     &:focus {
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-      outline: ${({ theme }) => theme.colors.yellow} auto 5px;
+      outline: ${({ theme }) => theme.colors.blue} auto 5px;
     }
   }
   textarea {
     width: 100%;
     padding: 0.5rem;
-    border-radius: 5px;
+    border-radius: 2px;
     border: none;
     margin: 0.5rem 0;
     &:focus {
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-      outline: ${({ theme }) => theme.colors.yellow} auto 5px;
+      outline: ${({ theme }) => theme.colors.blue} auto 5px;
     }
   }
   input[type="submit"] {
-    background-color: ${({ theme }) => theme.colors.yellow};
+    background-color: ${({ theme }) => theme.colors.white};
     color: ${({ theme }) => theme.colors.black};
     font-size: 2rem;
     font-weight: 500;
@@ -126,7 +127,8 @@ export const StyledFormContainer = styled.div`
     margin: 1rem 0;
     cursor: pointer;
     &:hover {
-      background-color: ${({ theme }) => theme.colors.red};
+      background-color: ${({ theme }) => theme.colors.brown};
+      color: ${({ theme }) => theme.colors.grey};
     }
   }
 `;
