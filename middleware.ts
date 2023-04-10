@@ -4,7 +4,7 @@ import { get } from "@vercel/edge-config";
 export const config = {
   // have the matcher match every path except the maintenance page
   // this is to prevent an infinite loop
-  matcher: "(?!/coming-soon)",
+  matcher: ["/((?!coming-soon).*)"],
 };
 
 export async function middleware(req: NextRequest) {
