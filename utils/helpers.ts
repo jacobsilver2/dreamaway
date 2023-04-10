@@ -1,5 +1,6 @@
 import { format, isSameDay } from "date-fns";
 import { EventBean } from "./types";
+import { FieldError } from "react-hook-form";
 
 export const getFirstEventIds = ({ events }: { events: EventBean[] }) => {
   let prevDate = "";
@@ -19,3 +20,9 @@ export const getAirtableEventUrl = (id) =>
 
 export const getFullDate = (date: string) =>
   format(new Date(date), "E, MMM d yyyy");
+
+export const getEmailError = (error?: FieldError) => {
+  if (error?.type === "required") return "This Field Is Required";
+  if (error?.type === "pattern") return "Please enter a valid email address";
+  return null;
+};

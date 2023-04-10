@@ -2,6 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import { usePostGeneralSubmission } from "../../utils/mutation";
 import { StyledFormContainer, StyledRequired } from "../common/styles";
+import { getEmailError } from "../../utils";
 
 type Inputs = {
   firstName: string;
@@ -78,7 +79,7 @@ export const GeneralForm = () => {
           {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
         />
         {errors.email && (
-          <StyledRequired>This field is required</StyledRequired>
+          <StyledRequired>{getEmailError(errors.email)}</StyledRequired>
         )}
 
         <label htmlFor="message">Message</label>

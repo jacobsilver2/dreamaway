@@ -1,6 +1,6 @@
 import { LayoutProps } from "../../../utils";
 import { Layout } from "./Layout";
-import PianoFrameImage from "../../../public/music/dylan_piano_compressed.jpeg";
+import PianoFrameImage from "../../../public/music/dylan_piano_compressed_1600.jpeg";
 import { ParallaxHeader } from "../ParallaxHeader";
 import { Container } from "../styles";
 
@@ -11,7 +11,7 @@ export const MusicLayout = ({ children }: LayoutProps) => {
         image={PianoFrameImage}
         altText="Dylan Piano Frame"
         title="Live Music"
-        fill
+        fill={true}
       />
       <Container>{children}</Container>
     </Layout>

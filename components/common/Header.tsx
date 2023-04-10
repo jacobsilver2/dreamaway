@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Hamburger from "hamburger-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -7,8 +7,8 @@ import { MOBILE_BREAKPOINT } from "../../utils";
 import { Portal } from "./Portal";
 import { Title } from "./styles";
 
-const StyledHeaderLink = styled(Link)<{ active?: boolean }>`
-  color: ${({ theme, active }) =>
+const StyledHeaderLink = styled(Link)<{ isActive?: boolean }>`
+  color: ${({ theme, isActive: active }) =>
     active ? theme.colors.yellow : theme.colors.white};
 `;
 
@@ -59,20 +59,17 @@ const StyledDesktopLI = styled.li`
 
 const StyledMobileLI = styled.li`
   display: block;
-  @media (min-width: ${MOBILE_BREAKPOINT}px) {
-    display: none;
-  }
 `;
 
 const StyledMobileUL = styled.ul`
-  display: none;
-  @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    display: block;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 1.5rem;
-  }
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1rem;
 `;
 
 const StyledLogo = styled.div`
@@ -91,6 +88,7 @@ const headerLinksLeft: HeaderLinks = {
   menus: "/menu",
   events: "/events",
   faq: "/faq",
+  instagram: "https://www.instagram.com/thedreamawaylodge/",
   history: "/history",
   contact: "/contact",
 };
@@ -102,16 +100,28 @@ const renderHeaderLinks = ({
   links: HeaderLinks;
   pathname: string;
 }) =>
-  Object.keys(links).map((key) => (
-    <StyledDesktopLI key={key}>
-      <StyledHeaderLink
-        active={pathname.includes(links[key])}
-        href={links[key]}
-      >
-        <h4>{key}</h4>
-      </StyledHeaderLink>
-    </StyledDesktopLI>
-  ));
+  Object.keys(links).map((key) => {
+    if (key === "instagram") {
+      return (
+        <StyledDesktopLI key={key}>
+          <a href={links[key]} target="_blank">
+            <h4>{key}</h4>
+          </a>
+        </StyledDesktopLI>
+      );
+    }
+
+    return (
+      <StyledDesktopLI key={key}>
+        <StyledHeaderLink
+          isActive={pathname.includes(links[key])}
+          href={links[key]}
+        >
+          <h4>{key}</h4>
+        </StyledHeaderLink>
+      </StyledDesktopLI>
+    );
+  });
 
 const getIsActive = (pathname: string, link: string) => {
   if (link === "/") {
@@ -134,8 +144,7 @@ const renderOverlayLinks = ({
       <Title>
         <StyledHeaderLink
           onClick={() => setOpen(false)}
-          // active={pathname.includes(links[key])}
-          active={getIsActive(pathname, links[key])}
+          isActive={getIsActive(pathname, links[key])}
           href={links[key]}
         >
           {key}

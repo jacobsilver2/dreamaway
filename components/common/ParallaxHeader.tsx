@@ -1,6 +1,5 @@
 import { StaticImageData } from "next/image";
 import { ParallaxBannerLayer } from "react-scroll-parallax";
-import styled from "styled-components";
 import { getFullDate } from "../../utils";
 import { Header } from "./Header";
 import {
@@ -27,7 +26,7 @@ export const ParallaxHeader = ({
   date,
   time,
   subText,
-  fill = true,
+  fill = false,
 }: ParallaxHeaderProps) => (
   <ParallaxBannerHeader>
     <ParallaxBannerLayer speed={-60}>
@@ -35,7 +34,7 @@ export const ParallaxHeader = ({
     </ParallaxBannerLayer>
 
     <ParallaxBannerLayer
-      translateY={[0, 75]}
+      translateY={[0, 10]}
       shouldAlwaysCompleteAnimation
       expanded={false}
     >

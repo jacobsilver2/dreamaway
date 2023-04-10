@@ -2,6 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { usePostBookingSubmission } from "../../utils/mutation";
 import { useRouter } from "next/router";
 import { StyledFormContainer, StyledRequired } from "../common/styles";
+import { getEmailError } from "../../utils";
 
 type Inputs = {
   firstName: string;
@@ -98,7 +99,7 @@ export const BookingForm = () => {
           {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
         />
         {errors.email && (
-          <StyledRequired>This field is required</StyledRequired>
+          <StyledRequired>{getEmailError(errors.email)}</StyledRequired>
         )}
 
         <label htmlFor="actName">Act Name*</label>

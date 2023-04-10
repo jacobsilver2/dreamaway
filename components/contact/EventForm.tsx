@@ -2,6 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/router";
 import { usePostEventSubmission } from "../../utils/mutation";
 import { StyledFormContainer, StyledRequired } from "../common/styles";
+import { getEmailError } from "../../utils";
 
 type Inputs = {
   name: string;
@@ -99,7 +100,7 @@ export const EventForm = () => {
           {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
         />
         {errors.email && (
-          <StyledRequired>This field is required</StyledRequired>
+          <StyledRequired>{getEmailError(errors.email)}</StyledRequired>
         )}
 
         <label htmlFor="phone">Phone</label>

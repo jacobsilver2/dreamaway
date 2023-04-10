@@ -28,15 +28,22 @@ export const Title = styled.h1`
 `;
 
 export const StyledFullwidthImage = styled(Image)`
-  /* width: 100%;
-  height: 100%; */
+  width: 100%;
+  height: 100%;
+  /* object-fit: contain; */
   object-fit: cover;
+  /* object-fit: none; */
+  /* object-position: center center; */
 `;
 
 export const ParallaxBannerHeader = styled(ParallaxBanner)`
+  background: ${({ theme }) => theme.colors.darkGrey};
   height: 50vh;
-  position: relative;
-  aspect-ratio: 16 / 9;
+  /* min-height: 500px; */
+  /* max-height: 500px; */
+  /* width: 100%; */
+  /* position: relative; */
+  /* aspect-ratio: 16 / 9; */
   @media (max-width: ${({ theme }) => theme.sizes.mobileBreakpoint}) {
     height: 40vh;
   }
@@ -115,8 +122,8 @@ export const StyledFormContainer = styled.div`
     }
   }
   input[type="submit"] {
-    background-color: ${({ theme }) => theme.colors.white};
-    color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.white};
     font-size: 2rem;
     font-weight: 500;
     width: 100%;
@@ -127,8 +134,8 @@ export const StyledFormContainer = styled.div`
     margin: 1rem 0;
     cursor: pointer;
     &:hover {
-      background-color: ${({ theme }) => theme.colors.brown};
-      color: ${({ theme }) => theme.colors.grey};
+      background-color: ${({ theme }) => theme.colors.grey};
+      color: ${({ theme }) => theme.colors.black};
     }
   }
 `;
@@ -136,6 +143,7 @@ export const StyledFormContainer = styled.div`
 export const StyledRequired = styled.span`
   color: ${({ theme }) => theme.colors.red};
   font-size: 0.75rem;
+  align-self: flex-start;
 `;
 
 export const FoodContainer = styled.div`
