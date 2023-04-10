@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { get } from "@vercel/edge-config";
 
 export const config = {
-  matcher: "/",
+  matcher: (req) => req.nextUrl.pathname !== "/coming-soon",
 };
 
 export async function middleware(req: NextRequest) {
@@ -11,7 +11,7 @@ export async function middleware(req: NextRequest) {
 
   // If in maintenance mode, point the url pathname to the maintenance page
   if (isInMaintenanceMode) {
-    req.nextUrl.pathname = `/maintenance`;
+    req.nextUrl.pathname = `/coming-soon`;
 
     // Rewrite to the url
     return NextResponse.rewrite(req.nextUrl);
