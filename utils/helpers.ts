@@ -26,3 +26,11 @@ export const getEmailError = (error?: FieldError) => {
   if (error?.type === "pattern") return "Please enter a valid email address";
   return null;
 };
+
+export const getWindowDimensions = () => {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+};

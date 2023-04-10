@@ -28,24 +28,24 @@ export const Title = styled.h1`
 `;
 
 export const StyledFullwidthImage = styled(Image)`
-  width: 100%;
-  height: 100%;
-  /* object-fit: contain; */
+  /* width: 100%; */
+  /* height: 100%; */
   object-fit: cover;
-  /* object-fit: none; */
-  /* object-position: center center; */
+  /* object-position: center; */
 `;
 
 export const ParallaxBannerHeader = styled(ParallaxBanner)`
+  position: relative;
   background: ${({ theme }) => theme.colors.darkGrey};
-  height: 50vh;
+  /* height: 50vh; */
+  /* height: 800px; */
+  height: 500px;
   /* min-height: 500px; */
-  /* max-height: 500px; */
+  max-height: 500px;
   /* width: 100%; */
-  /* position: relative; */
   /* aspect-ratio: 16 / 9; */
   @media (max-width: ${({ theme }) => theme.sizes.mobileBreakpoint}) {
-    height: 40vh;
+    height: 30vh;
   }
 `;
 

@@ -27,27 +27,29 @@ export const ParallaxHeader = ({
   time,
   subText,
   fill = false,
-}: ParallaxHeaderProps) => (
-  <ParallaxBannerHeader>
-    <ParallaxBannerLayer speed={-60}>
-      <StyledFullwidthImage src={image} alt={altText} fill={fill} />
-    </ParallaxBannerLayer>
+}: ParallaxHeaderProps) => {
+  return (
+    <ParallaxBannerHeader>
+      <ParallaxBannerLayer speed={-60}>
+        <StyledFullwidthImage src={image} alt={altText} fill={fill} />
+      </ParallaxBannerLayer>
 
-    <ParallaxBannerLayer
-      translateY={[0, 10]}
-      shouldAlwaysCompleteAnimation
-      expanded={false}
-    >
-      <Header />
-    </ParallaxBannerLayer>
+      <ParallaxBannerLayer
+        translateY={[0, 10]}
+        shouldAlwaysCompleteAnimation
+        expanded={false}
+      >
+        <Header />
+      </ParallaxBannerLayer>
 
-    <ParallaxTextContainer>
-      <ParallaxText>
-        <Title>{title}</Title>
-        {subText && <h3>{subText}</h3>}
-        {date && <h3>{getFullDate(date)}</h3>}
-        {time && <h3>{time}</h3>}
-      </ParallaxText>
-    </ParallaxTextContainer>
-  </ParallaxBannerHeader>
-);
+      <ParallaxTextContainer>
+        <ParallaxText>
+          <Title>{title}</Title>
+          {subText && <h3>{subText}</h3>}
+          {date && <h3>{getFullDate(date)}</h3>}
+          {time && <h3>{time}</h3>}
+        </ParallaxText>
+      </ParallaxTextContainer>
+    </ParallaxBannerHeader>
+  );
+};
