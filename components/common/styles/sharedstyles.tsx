@@ -81,6 +81,9 @@ export const StyledFormContainer = styled.div`
   padding: 2rem;
   margin: 0 auto;
   border-radius: 2px;
+  h3 {
+    align-self: flex-start;
+  }
   /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5); */
 
   label {

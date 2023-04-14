@@ -1,5 +1,7 @@
 import { ReactElement, ReactNode, useState } from "react";
+import { NextPage } from "next";
 import type { AppProps } from "next/app";
+import { AnimatePresence } from "framer-motion";
 import { ThemeProvider, DefaultTheme } from "styled-components";
 import {
   Hydrate,
@@ -11,7 +13,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { GlobalStyle } from "../components/common/styles/";
 import "yet-another-react-lightbox/styles.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { NextPage } from "next";
+import { useRouter } from "next/router";
 
 const theme: DefaultTheme = {
   sizes: {
@@ -40,7 +42,11 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-export default function App({ Component, pageProps }: AppPropsWithLayout) {
+export default function App({
+  Component,
+  pageProps,
+  router,
+}: AppPropsWithLayout) {
   const [queryClient] = useState(() => new QueryClient());
   const getLayout = Component.getLayout || ((page) => page);
   return (
@@ -51,7 +57,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           <GlobalStyle />
           <Hydrate state={pageProps.dehydratedState}>
             <ParallaxProvider>
-              {getLayout(<Component {...pageProps} />)}
+              <AnimatePresence mode="wait" initial={false}>
+                {getLayout(<Component {...pageProps} key={router.asPath} />)}
+              </AnimatePresence>
             </ParallaxProvider>
           </Hydrate>
         </ThemeProvider>

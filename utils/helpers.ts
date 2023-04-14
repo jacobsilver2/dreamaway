@@ -1,6 +1,8 @@
 import { format, isSameDay } from "date-fns";
 import { EventBean } from "./types";
 import { FieldError } from "react-hook-form";
+import RoosterImage from "../public/contact/rooster_compressed_1600.jpeg";
+import CandelabraImage from "../public/events/candelabra_compressed_1600.jpeg";
 
 export const getFirstEventIds = ({ events }: { events: EventBean[] }) => {
   let prevDate = "";
@@ -33,4 +35,9 @@ export const getWindowDimensions = () => {
     width,
     height,
   };
+};
+
+export const getRandomImage = () => {
+  const images = [RoosterImage, CandelabraImage];
+  return images[Math.floor(Math.random() * images.length)];
 };

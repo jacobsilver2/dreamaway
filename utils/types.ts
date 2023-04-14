@@ -57,6 +57,7 @@ export type ActInput = {
   Last_Name?: string;
   Blurb?: string;
   Url?: string;
+  Image?: string;
 };
 
 export type BookingSubmissionInputBean = {

@@ -13,5 +13,8 @@ export const DEFAULT_PAGE_SIZE = 5;
 
 export const EVENT_IMAGE_WIDTH = 500;
 export const EVENT_IMAGE_HEIGHT = 500;
-export const DREAMAWAY_EMAIL = "info@dreamawaylodge.com";
+export const DREAMAWAY_EMAIL = "hello@thedreamawaylodge.com";
+export const DREAMAWAY_FACEBOOK = "https://www.facebook.com/dreamawaylodge";
+export const DREAMAWAY_INSTAGRAM =
+  "https://www.instagram.com/thedreamawaylodge/";
 export const MOBILE_BREAKPOINT = 1068;

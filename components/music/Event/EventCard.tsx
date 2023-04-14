@@ -56,17 +56,33 @@ export const EventCard = ({
   loading,
   displayImage,
   displaySubDate,
+  renderExternalLink = false,
 }: {
   event: EventBean;
   loading: boolean;
   displayImage: boolean;
   displaySubDate?: boolean;
+  renderExternalLink?: boolean;
 }) => {
   if (loading) return <CircleLoader />;
 
   const monthShort = format(new Date(event?.fields?.Date), "MMM");
   const day = format(new Date(event?.fields?.Date), "d");
   const fullDate = getFullDate(event?.fields?.Date);
+
+  const renderImage = () => (
+    <Image
+      fill
+      style={{ objectFit: "cover", width: "100%", height: "100%" }}
+      src={
+        event?.fields.act_image
+          ? event?.fields.act_image[0].url
+          : "https://source.unsplash.com/random/?music"
+      }
+      alt={event?.fields.Name}
+    />
+  );
+
   return (
     <>
       {displayImage && (
@@ -75,17 +91,16 @@ export const EventCard = ({
             <div>{monthShort}</div>
             <div>{day}</div>
           </DateOverlay>
-          <Link href={`/music/${event?.id}`}>
-            <Image
-              src={event?.fields.act_image[0].url}
-              alt={event?.fields.act_image[0].filename}
-              fill
-              style={{ objectFit: "cover", width: "100%", height: "100%" }}
-            />
-          </Link>
+          <Link href={`/music/${event?.id}`}>{renderImage()}</Link>
         </StyledImageContainer>
       )}
-      <h3>{event?.fields.Name}</h3>
+      {renderExternalLink && event?.fields.act_url ? (
+        <a href={event?.fields.act_url[0]} target="_blank" rel="noreferrer">
+          <h2>{event?.fields.Name}</h2>
+        </a>
+      ) : (
+        <h2>{event?.fields.Name}</h2>
+      )}
       <h3>
         <StyledUL>
           <li>

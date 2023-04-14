@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import Hamburger from "hamburger-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { MOBILE_BREAKPOINT } from "../../utils";
-import { Portal } from "./Portal";
-import { Title } from "./styles";
+import { LayoutContext } from "./layouts";
 
-const StyledHeaderLink = styled(Link)<{ isActive?: boolean }>`
+export const StyledHeaderLink = styled(Link)<{ isActive?: boolean }>`
   color: ${({ theme, isActive: active }) =>
     active ? theme.colors.yellow : theme.colors.white};
 `;
@@ -18,7 +17,8 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: transparent;
+  /* background-color: transparent; */
+  background: black;
   color: ${({ theme }) => theme.colors.white};
   padding: 1rem;
 `;
@@ -57,21 +57,6 @@ const StyledDesktopLI = styled.li`
   }
 `;
 
-const StyledMobileLI = styled.li`
-  display: block;
-`;
-
-const StyledMobileUL = styled.ul`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  gap: 1rem;
-`;
-
 const StyledLogo = styled.div`
   display: none;
   @media (min-width: ${MOBILE_BREAKPOINT}px) {
@@ -79,11 +64,11 @@ const StyledLogo = styled.div`
   }
 `;
 
-type HeaderLinks = {
+export type HeaderLinks = {
   [key: string]: string;
 };
 
-const headerLinksLeft: HeaderLinks = {
+export const headerLinks: HeaderLinks = {
   music: "/music",
   menus: "/menu",
   events: "/events",
@@ -123,38 +108,15 @@ const renderHeaderLinks = ({
     );
   });
 
-const getIsActive = (pathname: string, link: string) => {
+export const getIsActive = (pathname: string, link: string) => {
   if (link === "/") {
     return pathname === "/";
   }
   return pathname.includes(link);
 };
 
-const renderOverlayLinks = ({
-  links,
-  pathname,
-  setOpen,
-}: {
-  links: HeaderLinks;
-  pathname: string;
-  setOpen: (isOpen: boolean) => void;
-}) =>
-  Object.keys(links).map((key) => (
-    <StyledMobileLI key={key}>
-      <Title>
-        <StyledHeaderLink
-          onClick={() => setOpen(false)}
-          isActive={getIsActive(pathname, links[key])}
-          href={links[key]}
-        >
-          {key}
-        </StyledHeaderLink>
-      </Title>
-    </StyledMobileLI>
-  ));
-
 export const Header = () => {
-  const [isOpen, setOpen] = useState(false);
+  const { mobileMenuIsOpen, toggleMobileMenu } = useContext(LayoutContext);
   const { pathname } = useRouter();
 
   return (
@@ -168,24 +130,19 @@ export const Header = () => {
         <StyledHeaderLinks>
           <StyledUL>
             {renderHeaderLinks({
-              links: { ...headerLinksLeft },
+              links: { ...headerLinks },
               pathname,
             })}
           </StyledUL>
         </StyledHeaderLinks>
       </StyledHeader>
       <StyledHamburgerWrapper>
-        <Hamburger color="white" toggled={isOpen} toggle={setOpen} />
+        <Hamburger
+          color="white"
+          toggled={mobileMenuIsOpen}
+          toggle={toggleMobileMenu}
+        />
       </StyledHamburgerWrapper>
-      <Portal isOpen={isOpen} setOpen={setOpen}>
-        <StyledMobileUL>
-          {renderOverlayLinks({
-            links: { ...{ home: "/" }, ...headerLinksLeft },
-            pathname,
-            setOpen,
-          })}
-        </StyledMobileUL>
-      </Portal>
     </>
   );
 };

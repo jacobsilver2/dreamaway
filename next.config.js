@@ -7,6 +7,15 @@ const nextConfig = {
         // protocol: "https",
         hostname: "v5.airtableusercontent.com",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/image/upload",
+      },
+      {
+        protocol: "https",
+        hostname: "source.unsplash.com",
+      },
     ],
   },
   reactStrictMode: true,

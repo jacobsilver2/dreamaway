@@ -16,6 +16,7 @@ export const Event = ({ id }: { id: string }) => {
           displayImage={false}
           loading={isLoading}
           event={event}
+          renderExternalLink
         />
       )}
     </>

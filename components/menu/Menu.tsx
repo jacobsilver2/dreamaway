@@ -51,17 +51,15 @@ export const Menu = () => {
   };
 
   const renderTabTriggers = () =>
-    Object.keys(TAB).map((tab) => {
-      return (
-        <StyledTabsTrigger
-          key={tab}
-          active={TAB[tab] === tab}
-          onClick={() => setTab(TAB[tab])}
-        >
-          {TAB[tab]}
-        </StyledTabsTrigger>
-      );
-    });
+    Object.values(TAB).map((tabName) => (
+      <StyledTabsTrigger
+        key={tabName}
+        active={tab === tabName}
+        onClick={() => setTab(tabName)}
+      >
+        {tabName}
+      </StyledTabsTrigger>
+    ));
 
   return (
     <StyledTabsRoot>

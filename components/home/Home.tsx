@@ -1,3 +1,4 @@
+import { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { ParallaxBanner, ParallaxBannerLayer } from "react-scroll-parallax";
 import {
@@ -8,8 +9,9 @@ import {
 } from "../common/styles";
 import HomeImage from "../../public/home/black_hat_compressed_1800.jpeg";
 import GuitarImage from "../../public/menus/guitar_compressed.jpeg";
-import { Header } from "../common";
+import { LayoutContext, Header } from "../common";
 import Link from "next/link";
+import { NavDots } from "./NavDots";
 
 const StyledParallaxBanner = styled(ParallaxBanner)`
   height: 100vh;
@@ -44,7 +46,8 @@ const StyledHomeLink = styled.div`
 
 export const Home = () => (
   <>
-    <StyledParallaxBanner>
+    <NavDots />
+    <StyledParallaxBanner id="homeBanner">
       <ParallaxBannerLayer speed={-50}>
         <StyledFullwidthImage src={HomeImage} alt="House Front" fill />
       </ParallaxBannerLayer>
@@ -68,7 +71,7 @@ export const Home = () => (
       </ParallaxTextContainer>
     </StyledParallaxBanner>
 
-    <StyledParallaxBanner>
+    <StyledParallaxBanner id="menusBanner">
       <ParallaxBannerLayer speed={-50}>
         <StyledFullwidthImage src={GuitarImage} alt="Restaurant" fill />
       </ParallaxBannerLayer>
@@ -91,7 +94,7 @@ export const Home = () => (
       </ParallaxBannerLayer>
     </StyledParallaxBanner>
 
-    <StyledParallaxBanner>
+    <StyledParallaxBanner id="musicBanner">
       <ParallaxBannerLayer speed={-50}>
         <StyledFullwidthImage src={GuitarImage} alt="House Side" fill />
       </ParallaxBannerLayer>
@@ -110,20 +113,5 @@ export const Home = () => (
         </ParallaxTextContainer>
       </ParallaxBannerLayer>
     </StyledParallaxBanner>
-
-    {/* <StyledParallaxBanner>
-      <ParallaxBannerLayer speed={-50}>
-        <StyledFullwidthImage src={Sign} alt="Sign" fill />
-      </ParallaxBannerLayer>
-      <ParallaxBannerLayer speed={-10}>
-        <ParallaxTextContainer>
-          <ParallaxText>
-            <Link href="/events">
-              <Title>events</Title>
-            </Link>
-          </ParallaxText>
-        </ParallaxTextContainer>
-      </ParallaxBannerLayer>
-    </StyledParallaxBanner> */}
   </>
 );

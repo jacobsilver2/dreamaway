@@ -1,7 +1,14 @@
 import styled from "styled-components";
-import { DREAMAWAY_EMAIL } from "../../utils";
+import {
+  DREAMAWAY_EMAIL,
+  DREAMAWAY_FACEBOOK,
+  DREAMAWAY_INSTAGRAM,
+} from "../../utils";
+import { Facebook } from "./Facebook";
+import { Instagram } from "./Instagram";
 
 export const StyledFooter = styled.footer`
+  border-top: 1px solid ${({ theme }) => theme.colors.grey};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,9 +33,29 @@ const StyledUL = styled.ul`
   }
 `;
 
+const Socials = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+`;
+
 export const Footer = () => (
   <StyledFooter>
     <StyledUL>
+      <li>
+        <Socials>
+          <a target="_blank" rel="noreferrer" href={DREAMAWAY_FACEBOOK}>
+            <Facebook />
+          </a>
+          <a target="_blank" rel="noreferrer" href={DREAMAWAY_INSTAGRAM}>
+            <Instagram />
+          </a>
+        </Socials>
+      </li>
       <li>
         <h3>hours of operation</h3>
       </li>

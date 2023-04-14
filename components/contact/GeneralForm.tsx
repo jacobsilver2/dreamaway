@@ -58,6 +58,7 @@ export const GeneralForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <StyledFormContainer>
+        <h3>General</h3>
         <label htmlFor="firstName">First Name</label>
         <input
           placeholder="First Name"

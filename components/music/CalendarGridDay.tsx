@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo, useCallback } from "react";
 import {
   useHover,
   useFloating,
@@ -13,6 +13,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { format, isToday } from "date-fns";
 import { EventsByDay } from "./CalendarGrid";
+import { getRandomImage } from "../../utils";
 
 const Day = styled.div<{ hasEvents?: boolean; isToday?: boolean }>`
   position: relative;
@@ -130,31 +131,39 @@ export const CalendarGridDay = ({
   const dayIsToday = isToday(day?.date);
   const hasEvents = !loading && day?.events?.length > 0;
 
-  const getFeaturedEvent = () => {
+  const getFeaturedEvent = useCallback(() => {
     if (day?.events?.length === 1) {
       return day?.events[0];
     }
 
     const hasFeatured = day?.events?.find((event) => event.fields.featured);
     return hasFeatured || day?.events[0];
-  };
+  }, [day]);
 
-  const renderEvents = () => {
+  const renderEvents = useMemo(() => {
     if (hasEvents) {
       return (
         <StyledImage
           placeholder="blur"
           blurDataURL="
-            data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mPs+A8AAhUBiUo2eoUAAAAASUVORK5CYII=
-            "
-          src={getFeaturedEvent()?.fields.act_image[0].url}
-          alt={getFeaturedEvent()?.fields.act_image[0].filename}
+          data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mPs+A8AAhUBiUo2eoUAAAAASUVORK5CYII=
+          "
+          src={
+            getFeaturedEvent()?.fields.act_image
+              ? getFeaturedEvent()?.fields.act_image[0].url
+              : "https://source.unsplash.com/random/?music"
+          }
+          alt={
+            getFeaturedEvent()?.fields.act_image
+              ? getFeaturedEvent()?.fields.act_image[0].filename
+              : "Random Image"
+          }
           fill
         />
       );
     }
     return null;
-  };
+  }, [hasEvents, getFeaturedEvent]);
 
   return (
     <>
@@ -167,7 +176,7 @@ export const CalendarGridDay = ({
         <DayNumber hasEvents={hasEvents} isToday={dayIsToday}>
           <DayInner>{day && format(day.date, "d")}</DayInner>
         </DayNumber>
-        {renderEvents()}
+        {renderEvents}
       </Day>
       {hasEvents && isOpen && (
         <>

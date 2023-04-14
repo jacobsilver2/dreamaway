@@ -94,6 +94,7 @@ export const ShootForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <StyledFormContainer>
+        <h3>Shoots</h3>
         <label htmlFor="name">First Name*</label>
         <input
           placeholder="First and Last Name"

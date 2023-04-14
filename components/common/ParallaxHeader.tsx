@@ -18,6 +18,7 @@ type ParallaxHeaderProps = {
   date?: string;
   time?: string;
   fill?: boolean;
+  link?: string;
 };
 export const ParallaxHeader = ({
   image,
@@ -26,6 +27,7 @@ export const ParallaxHeader = ({
   date,
   time,
   subText,
+  link,
   fill = false,
 }: ParallaxHeaderProps) => {
   return (
@@ -44,7 +46,13 @@ export const ParallaxHeader = ({
 
       <ParallaxTextContainer>
         <ParallaxText>
-          <Title>{title}</Title>
+          {link ? (
+            <a href={link} target="_blank" rel="noreferrer">
+              <Title>{title}</Title>
+            </a>
+          ) : (
+            <Title>{title}</Title>
+          )}
           {subText && <h3>{subText}</h3>}
           {date && <h3>{getFullDate(date)}</h3>}
           {time && <h3>{time}</h3>}

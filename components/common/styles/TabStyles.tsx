@@ -27,24 +27,17 @@ export const StyledTabsTrigger = styled.div<{ active: boolean }>`
   justify-content: center;
   background-color: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.black};
+  text-decoration: ${({ active }) => (active ? "underline" : "none")};
   font-size: 1.5rem;
   cursor: pointer;
   &:hover {
-    color: ${({ theme }) => theme.colors.blue};
+    text-decoration: underline;
   }
 
   &:focus {
     position: relative;
     border: none;
   }
-
-  ${({ active }) =>
-    active &&
-    css`
-      border: none;
-      box-shadow: none;
-      color: ${({ theme }) => theme.colors.blue};
-    `}
 `;
 
 export const StyledTabsContent = styled.div`

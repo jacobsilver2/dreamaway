@@ -85,6 +85,7 @@ export const EventForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <StyledFormContainer>
+        <h3>Book a Party/Event</h3>
         <label htmlFor="name">Name*</label>
         <input
           placeholder="First and Last Name"
