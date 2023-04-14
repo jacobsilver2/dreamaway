@@ -26,7 +26,7 @@ export const MobileOverlay = styled.div<{ isOpen: boolean }>`
   overflow: hidden;
 `;
 
-export const MobileOverlayCloseButton = styled.button`
+export const CloseButton = styled.button`
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -58,9 +58,7 @@ export const Portal = ({ children, isOpen, setOpen }: PortalProps) => {
   return mounted && ref.current
     ? createPortal(
         <MobileOverlay isOpen={isOpen}>
-          <MobileOverlayCloseButton onClick={() => setOpen(false)}>
-            X
-          </MobileOverlayCloseButton>
+          <CloseButton onClick={() => setOpen(false)}>X</CloseButton>
           {children}
         </MobileOverlay>,
         ref.current
