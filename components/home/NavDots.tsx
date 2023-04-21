@@ -2,11 +2,11 @@ import { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { LayoutContext } from "../common";
 
-const StyledRightEdgeNavDots = styled.div<{ visible: boolean }>`
+// const StyledRightEdgeNavDots = styled.div<{ visible: boolean }>`
+const StyledRightEdgeNavDots = styled.div`
   @media (max-width: ${({ theme }) => theme.sizes.mobileBreakpoint}) {
     display: none;
   }
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
   transition: 0.2s ease-out;
   position: fixed;
   top: 50%;
@@ -37,6 +37,9 @@ const StyledNavDot = styled.div<{ active?: boolean }>`
   transition: 0.2s ease-out;
   ${StyledNavDotContainer}:hover & {
     transform: scale(1.2);
+  }
+  .overlapsFooter {
+    border: 1px solid ${({ theme }) => theme.colors.black};
   }
 `;
 
@@ -72,12 +75,55 @@ export const NavDots = () => {
       const menusBannerTop = menusBanner.getBoundingClientRect().top;
       const musicBannerTop = musicBanner.getBoundingClientRect().top;
 
-      if (homeBannerTop < 0 && menusBannerTop > 0) {
+      if (homeBannerTop <= 0 && menusBannerTop > 0) {
         setActive("homeBanner");
-      } else if (menusBannerTop < 0 && musicBannerTop > 0) {
+      } else if (menusBannerTop <= 0 && musicBannerTop > 0) {
         setActive("menusBanner");
-      } else if (musicBannerTop < 0) {
+      } else if (musicBannerTop <= 0) {
         setActive("musicBanner");
+      }
+    }
+
+    const homeDot = document.getElementById("homeDot");
+    const menusDot = document.getElementById("menusDot");
+    const musicDot = document.getElementById("musicDot");
+    const footer = document.getElementById("footer");
+
+    if (homeDot && menusDot && musicDot) {
+      const homeDotRect = homeDot.getBoundingClientRect();
+      const menusDotRect = menusDot.getBoundingClientRect();
+      const musicDotRect = musicDot.getBoundingClientRect();
+      const footerRect = footer?.getBoundingClientRect();
+
+      const homeDotOverlapsFooter =
+        footerRect &&
+        homeDotRect.top < footerRect.top &&
+        homeDotRect.bottom > footerRect.top;
+      const menusDotOverlapsFooter =
+        footerRect &&
+        menusDotRect.top < footerRect.top &&
+        menusDotRect.bottom > footerRect.top;
+      const musicDotOverlapsFooter =
+        footerRect &&
+        musicDotRect.top < footerRect.top &&
+        musicDotRect.bottom > footerRect.top;
+
+      console.log({
+        homeDotOverlapsFooter,
+        menusDotOverlapsFooter,
+        musicDotOverlapsFooter,
+      });
+
+      if (homeDotOverlapsFooter) {
+        homeDot.className = "overlapsFooter";
+      }
+
+      if (menusDotOverlapsFooter) {
+        menusDot.className = "overlapsFooter";
+      }
+
+      if (musicDotOverlapsFooter) {
+        musicDot.className = "overlapsFooter";
       }
     }
   };
@@ -88,8 +134,8 @@ export const NavDots = () => {
   }, []);
 
   return (
-    <StyledRightEdgeNavDots visible={!footerIsVisible}>
-      <StyledNavDotContainer>
+    <StyledRightEdgeNavDots>
+      <StyledNavDotContainer id="homeDot">
         <StyledNavDotText>dream away lodge</StyledNavDotText>
         <StyledNavDot
           active={active === "homeBanner"}
@@ -101,7 +147,7 @@ export const NavDots = () => {
         />
       </StyledNavDotContainer>
 
-      <StyledNavDotContainer>
+      <StyledNavDotContainer id="menusDot">
         <StyledNavDotText>eat, drink</StyledNavDotText>
         <StyledNavDot
           active={active === "menusBanner"}
@@ -113,7 +159,7 @@ export const NavDots = () => {
         />
       </StyledNavDotContainer>
 
-      <StyledNavDotContainer>
+      <StyledNavDotContainer id="musicDot">
         <StyledNavDotText>listen</StyledNavDotText>
         <StyledNavDot
           active={active === "musicBanner"}

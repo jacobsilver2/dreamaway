@@ -15,12 +15,13 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.colors.white};
     padding: 0;
     margin: 0;
-    font-family: 'Trebuchet MS', serif;
+    font-family: 'Playfair Display', serif;
   }
   h1 {
     font-size: 2rem;
     font-weight: 700;
     margin: 0;
+    font-family: 'Lobster Two', cursive;
   }
 
   a {

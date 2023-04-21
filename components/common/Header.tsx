@@ -1,10 +1,15 @@
-import { useCallback, useContext, useEffect } from "react";
+import { useContext } from "react";
 import Hamburger from "hamburger-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { MOBILE_BREAKPOINT } from "../../utils";
+import {
+  DREAMAWAY_INSTAGRAM,
+  DREAMAWAY_RESERVATIONS,
+  MOBILE_BREAKPOINT,
+} from "../../utils";
 import { LayoutContext } from "./layouts";
+import { Resy } from "./Resy";
 
 export const StyledHeaderLink = styled(Link)<{ isActive?: boolean }>`
   color: ${({ theme, isActive: active }) =>
@@ -17,8 +22,7 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background-color: transparent; */
-  background: black;
+  background: ${({ theme }) => theme.colors.blue};
   color: ${({ theme }) => theme.colors.white};
   padding: 1rem;
 `;
@@ -33,6 +37,7 @@ const StyledHeaderLinks = styled.nav`
 
 const StyledUL = styled.ul`
   display: flex;
+  align-items: center;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -57,6 +62,10 @@ const StyledDesktopLI = styled.li`
   }
 `;
 
+const StyledResy = styled(StyledDesktopLI)`
+  margin-top: 0.5rem;
+`;
+
 const StyledLogo = styled.div`
   display: none;
   @media (min-width: ${MOBILE_BREAKPOINT}px) {
@@ -69,11 +78,12 @@ export type HeaderLinks = {
 };
 
 export const headerLinks: HeaderLinks = {
-  music: "/music",
+  // reservations: DREAMAWAY_RESERVATIONS,
+  calendar: "/calendar",
   menus: "/menu",
   events: "/events",
   faq: "/faq",
-  instagram: "https://www.instagram.com/thedreamawaylodge/",
+  instagram: DREAMAWAY_INSTAGRAM,
   history: "/history",
   contact: "/contact",
 };
@@ -129,6 +139,11 @@ export const Header = () => {
         </StyledLogo>
         <StyledHeaderLinks>
           <StyledUL>
+            <StyledResy>
+              <StyledHeaderLink target="_blank" href={DREAMAWAY_RESERVATIONS}>
+                <Resy />
+              </StyledHeaderLink>
+            </StyledResy>
             {renderHeaderLinks({
               links: { ...headerLinks },
               pathname,

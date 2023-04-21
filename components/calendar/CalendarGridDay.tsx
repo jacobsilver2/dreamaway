@@ -192,7 +192,7 @@ export const CalendarGridDay = ({
             <StyledFloatingInner>
               {day?.events?.map((event) => (
                 <p key={event.id}>
-                  <Link href={`/music/${event.id}`}>
+                  <Link href={`/calendar/${event.id}`}>
                     {event.fields.Time_Formatted} - {event.fields.Name}
                   </Link>
                 </p>

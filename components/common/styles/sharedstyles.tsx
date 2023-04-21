@@ -1,6 +1,7 @@
 import { ParallaxBanner } from "react-scroll-parallax";
 import Image from "next/image";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const Container = styled.main<{ maxWidth?: boolean }>`
   padding: 5rem;
@@ -18,6 +19,16 @@ export const Container = styled.main<{ maxWidth?: boolean }>`
 `;
 
 export const Title = styled.h1`
+  margin: 0;
+  font-size: 4rem;
+  text-align: center;
+  text-decoration: none;
+  @media (max-width: ${({ theme }) => theme.sizes.maxWidth}) {
+    font-size: 2.5rem;
+  }
+`;
+
+export const BannerTitle = styled.h2`
   margin: 0;
   font-size: 4rem;
   text-align: center;
@@ -191,4 +202,16 @@ export const FoodItem = styled.div`
     margin: 0;
   }
   padding: 1rem;
+`;
+
+export const Word = styled(motion.span)`
+  display: inline-block;
+  margin-right: 0.25em;
+  white-space: nowrap;
+`;
+
+export const Character = styled(motion.span)`
+  display: inline-block;
+  margin-right: -0.05em;
+  margin-right: 0.02em;
 `;

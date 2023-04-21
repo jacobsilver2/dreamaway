@@ -121,31 +121,27 @@ export type FoodBean = {
     vegan: boolean;
     gluten_free: boolean;
     vegan_option: boolean;
+    visible?: boolean;
+    order: number;
   };
 };
 
-export type WineTypeBean = "red" | "white" | "rose" | "orange";
 export type WineBean = {
   id: string;
   createdTime: string;
   fields: {
     name: string;
     description: string;
-    type: WineTypeBean;
+    type: string;
     year: string;
     glass_price: string;
     bottle_price: string;
+    visible?: boolean;
+    order: number;
   };
 };
 
-export type BeerTypeBean =
-  | "pilsner"
-  | "ipa"
-  | "pale_ale"
-  | "stout"
-  | "non-alcoholic";
-
-export type BeerPourBean = "draft" | "bottle" | "can";
+export type BeerPourBean = "draft" | "bottle/can";
 
 export type BeerBean = {
   id: string;
@@ -153,11 +149,13 @@ export type BeerBean = {
   fields: {
     company: string;
     name: string;
-    type: BeerTypeBean;
+    type: string;
     pour: BeerPourBean;
     price: string;
     location: string;
     alcohol: number;
+    visible?: boolean;
+    order: number;
   };
 };
 
@@ -186,6 +184,17 @@ export type SpiritFreeBean = {
     name: string;
     description: string;
     price: string;
+  };
+};
+
+export type FaqBean = {
+  id: string;
+  createdTime: string;
+  fields: {
+    heading: string;
+    description: string;
+    visible?: boolean;
+    order: number;
   };
 };
 

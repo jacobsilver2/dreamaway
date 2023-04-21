@@ -5,3 +5,4 @@ export * from "./useGetWine";
 export * from "./useGetBeer";
 export * from "./useGetCocktails";
 export * from "./useGetSpiritFree";
+export * from "./useGetFaq";

@@ -66,6 +66,8 @@ export const EventCard = ({
 }) => {
   if (loading) return <CircleLoader />;
 
+  if (!event) return <p>No upcoming events</p>;
+
   const monthShort = format(new Date(event?.fields?.Date), "MMM");
   const day = format(new Date(event?.fields?.Date), "d");
   const fullDate = getFullDate(event?.fields?.Date);
@@ -91,7 +93,7 @@ export const EventCard = ({
             <div>{monthShort}</div>
             <div>{day}</div>
           </DateOverlay>
-          <Link href={`/music/${event?.id}`}>{renderImage()}</Link>
+          <Link href={`/calendar/${event?.id}`}>{renderImage()}</Link>
         </StyledImageContainer>
       )}
       {renderExternalLink && event?.fields.act_url ? (

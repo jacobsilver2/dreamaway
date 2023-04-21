@@ -1,19 +1,19 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { AIRTABLE_RESTAURANT_BEER_URL, DEFAULT_PAGE_SIZE } from "../constant";
-import { BeerBean } from "../types";
+import { AIRTABLE_FAQ_URL } from "../constant";
+import { FaqBean } from "../types";
 
-export const useGetBeer = () => {
+export const useGetFaq = () => {
   const { data, error, isLoading } = useInfiniteQuery<{
     data: {
-      records: BeerBean[];
+      records: FaqBean[];
       offset?: string;
     };
   }>(
-    ["beer"],
+    ["faq"],
     ({ pageParam }) =>
       axios.get(
-        `${AIRTABLE_RESTAURANT_BEER_URL}?PageSize=${DEFAULT_PAGE_SIZE}${
+        `${AIRTABLE_FAQ_URL}?PageSize=${50}${
           pageParam ? `&offset=${pageParam}` : ""
         }`,
         {
@@ -28,23 +28,14 @@ export const useGetBeer = () => {
     }
   );
 
-  const beer = data?.pages
+  const faq = data?.pages
     ?.map((page) => page.data.records)
     .flat()
-    .filter((record) => record.fields.visible);
-
-  const draftBeers = beer
-    ?.filter((item) => item.fields.pour === "draft")
-    .sort((a, b) => a.fields.order - b.fields.order);
-
-  const bottleAndCanBeers = beer
-    ?.filter((item) => item.fields.pour === "bottle/can")
+    .filter((record) => record.fields.visible)
     .sort((a, b) => a.fields.order - b.fields.order);
 
   return {
-    beer,
-    draftBeers,
-    bottleAndCanBeers,
+    faq,
     error,
     isLoading,
   };

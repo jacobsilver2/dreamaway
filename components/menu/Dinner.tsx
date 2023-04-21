@@ -8,12 +8,10 @@ import {
 } from "../common/styles";
 
 export const Dinner = () => {
-  const { food, isLoading, error } = useGetFood();
-  const dinner = food?.filter((item) => item.fields.type === "main");
-  const appetizers = food?.filter((item) => item.fields.type === "appetizer");
-  const dessert = food?.filter((item) => item.fields.type === "dessert");
+  const { dinner, appetizers, dessert, isLoading, error } = useGetFood();
 
   if (isLoading) return <CircleLoader />;
+  if (error) return <p>Something went wrong</p>;
 
   const renderAppetizers = () =>
     appetizers?.map((item) => (

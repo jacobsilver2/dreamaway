@@ -86,14 +86,12 @@ export const CalendarGrid = () => {
           const hasEvents = day?.events?.length > 0 && !isLoading;
           if (hasEvents) {
             return (
-              // <Link key={i} href={`/music/${day.events[0].id}`}>
               <CalendarGridDay
                 loading={isLoading}
                 cursor={cursor}
                 day={day}
                 key={i}
               />
-              // </Link>
             );
           }
           return (

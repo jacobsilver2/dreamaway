@@ -11,11 +11,9 @@ const Container = styled.div`
   gap: 5rem;
 `;
 
-export const Calendar = () => {
-  return (
-    <Container>
-      <NextEvent />
-      <CalendarGrid />
-    </Container>
-  );
-};
+export const Calendar = () => (
+  <Container>
+    <NextEvent />
+    <CalendarGrid />
+  </Container>
+);

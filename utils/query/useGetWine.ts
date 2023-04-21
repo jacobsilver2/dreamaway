@@ -32,10 +32,25 @@ export const useGetWine = () => {
     }
   );
 
-  const wine = data?.pages?.map((page) => page.data.records).flat();
+  const wine = data?.pages
+    ?.map((page) => page.data.records)
+    .flat()
+    .filter((record) => record.fields.visible);
+
+  const wineByType = wine?.reduce((acc, item) => {
+    if (acc[item.fields.type]) {
+      acc[item.fields.type].push(item);
+      acc[item.fields.type] = acc[item.fields.type].sort(
+        (a, b) => a.fields.order - b.fields.order
+      );
+    } else {
+      acc[item.fields.type] = [item];
+    }
+    return acc;
+  }, {});
 
   return {
-    wine,
+    wineByType,
     error,
     isLoading,
   };

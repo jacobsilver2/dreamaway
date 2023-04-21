@@ -176,7 +176,7 @@ export const Layout = ({ children }: LayoutProps) => {
               {children}
             </LayoutContext.Provider>
           </main>
-          <div ref={footerRef}>
+          <div id="footer" ref={footerRef}>
             <Footer />
           </div>
         </Grid>

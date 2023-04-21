@@ -28,10 +28,27 @@ export const useGetFood = () => {
     }
   );
 
-  const food = data?.pages?.map((page) => page.data.records).flat();
+  const food = data?.pages
+    ?.map((page) => page.data.records)
+    .flat()
+    .filter((record) => record.fields.visible);
+
+  const dinner = food
+    ?.filter((item) => item.fields.type === "main")
+    .sort((a, b) => a.fields.order - b.fields.order);
+
+  const appetizers = food
+    ?.filter((item) => item.fields.type === "appetizer")
+    .sort((a, b) => a.fields.order - b.fields.order);
+
+  const dessert = food
+    ?.filter((item) => item.fields.type === "dessert")
+    .sort((a, b) => a.fields.order - b.fields.order);
 
   return {
-    food,
+    dinner,
+    appetizers,
+    dessert,
     error,
     isLoading,
   };

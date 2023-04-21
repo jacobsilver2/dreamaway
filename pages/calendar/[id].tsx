@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ReactElement } from "react";
-import { Event } from "../../components/music/Event";
+import { Event } from "../../components/calendar/Event";
 import { CalendarEventLayout } from "../../components/common/layouts";
 import { EventBean, getAirtableEventUrl } from "../../utils";
 import { NextPageWithLayout } from "../_app";

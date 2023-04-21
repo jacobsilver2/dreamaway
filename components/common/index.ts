@@ -5,3 +5,4 @@ export * from "./layouts/Layout";
 export * from "./Lightbox";
 export * from "./Portal";
 export * from "./ParallaxHeader";
+export * from "./Resy";
